@@ -12,9 +12,9 @@ Phase 1  [COMPLETE]  ███████████████████�
 Phase 2  [COMPLETE]  ████████████████████  Database: Full Prisma Schema & Migrations
 Phase 3  [COMPLETE]  ████████████████████  Authentication (NextAuth.js v5)
 Phase 4  [COMPLETE]  ████████████████████  Admin Panel Core Layout & Dashboard
-Phase 5  [PENDING]   ░░░░░░░░░░░░░░░░░░░░  Content: Posts, Pages, Custom Post Types
+Phase 5  [MOSTLY]    ████████████████░░░░  Content: Posts, Pages, Custom Post Types
 Phase 6  [PENDING]   ░░░░░░░░░░░░░░░░░░░░  Media Library
-Phase 7  [PENDING]   ░░░░░░░░░░░░░░░░░░░░  Taxonomies: Categories, Tags
+Phase 7  [PARTIAL]   ██████████░░░░░░░░░░  Taxonomies: Categories, Tags
 Phase 8  [PENDING]   ░░░░░░░░░░░░░░░░░░░░  Users & Roles
 Phase 9  [PENDING]   ░░░░░░░░░░░░░░░░░░░░  Settings & Permalink System
 Phase 10 [PENDING]   ░░░░░░░░░░░░░░░░░░░░  Frontend Theming System
@@ -30,18 +30,17 @@ Phase 16 [PENDING]   ░░░░░░░░░░░░░░░░░░░�
 
 ## 🎯 NEXT AGENT ACTION
 
-**STATE: Full admin shell implemented — collapsible sidebar, sticky topbar, dark/light mode, live dashboard stats, Quick Draft, and all placeholder pages rendered.**
+**STATE: Phase 5 core is done — posts and pages can be written, published, revised, trashed, and read on the public site.** The project was renamed from Depot to KodPress on 2026-11-07; work happens on the `dev` branch, `release` is the GitHub default.
 
-### ➡️ Start Phase 5: Content — Posts, Pages, Custom Post Types
+### How content works now (read before touching posts/pages)
+- **Content module** — `src/lib/content/` (`content` from `@/lib/content`). Every post/page/term operation goes through it; it takes an `Actor` and enforces capabilities, slugs, sanitizing, revisions, trash, term counts, and hooks. Server Actions in `src/app/admin/(protected)/content-actions.ts` only translate forms into calls. Do not query `db.post` directly from screens.
+- **Access module** — `src/lib/access.ts` (`can`, `assertCan`, `actorFromSession`); `requireActor()` / `requireCap()` in `src/lib/auth-utils.ts`. Session fields are typed in `src/types/auth.d.ts`.
+- **Tests** — `npm test` (Vitest) runs against a throwaway SQLite database built from the Prisma migrations (`src/test/database.ts`).
 
-**Read**: `phases/PHASE_05_CONTENT.md` for the full task checklist.
-
-**Summary of Phase 5 tasks:**
-1. Build the Posts list page with filtering, sorting, bulk actions, and pagination using `DataTable`.
-2. Build the Post editor page using TipTap rich text editor.
-3. Implement Pages list and editor (identical to Posts, different `type`).
-4. Implement Categories and Tags taxonomy management screens.
-5. Add slug auto-generation and SEO meta fields (title, description, og:image).
+### ➡️ Next: pick one
+1. **Fix the install flow (release blocker).** The setup wizard never creates a User; only a hand-run `prisma db seed` does. Fold install state (kodpress-config.json, `kodpress_installed`, `.env`) into one Installation module and create the admin during install.
+2. **Phase 6: Media Library** — unlocks featured images and image upload in the editor (currently "image from URL" only).
+3. **Finish Phase 5 leftovers:** Quick Edit, featured image panel, Preview button, password-protected visibility, scheduled (`future`) posts, SEO meta fields.
 
 ---
 
@@ -109,12 +108,19 @@ Phase 16 [PENDING]   ░░░░░░░░░░░░░░░░░░░�
 | 2026-07-04 | Current Agent | Executed Phase 2: expanded Prisma schema to all core models, configured seed script, ran database migrations, set up caching options utility, and enabled admin profile auto-migration. Added root `kodpress-config.json` generation. |
 | 2026-07-04 | Current Agent | Executed Phase 3: Configured NextAuth.js v5 credentials login, mapped database roles/capabilities, updated middleware route protection, built forgot/reset flows. |
 | 2026-07-04 | Current Agent | Executed Phase 4: Built full admin shell (AdminShell, Sidebar, Topbar, Breadcrumbs), admin CSS variables, dark/light theme toggle, live dashboard stats, Quick Draft server action, 7 shared UI components, 9 placeholder admin pages. |
+| 2026-11-07 | Claude | Revived the stale project (Node 24 native-module rebuild, stale `.next` cache), renamed Depot → KodPress, set up `origin` (dev/release). Phase 5: Content + Access modules with Vitest tests, posts/pages list + TipTap editor, revisions, trash, categories/tags screens, public homepage and `/[slug]` pages. Fixed `/setup` redirect and prerendering. |
 
 ---
 
 ## ⚠️ Known Issues / Blockers
 
-None. Scaffolded successfully without affecting planning/ or root md files.
+- **Install creates no admin user** — `/api/setup/install` stores `temp_admin_*` options; only `prisma db seed` turns them into a User. A fresh install cannot log in.
+- **Hard-coded `AUTH_SECRET` fallback** in `src/auth.config.ts` and `src/lib/env.ts` — sessions are forgeable if the env var is missing in production.
+- **`/api/setup/install` is unauthenticated**, writes request values unescaped into `.env`, and runs `npx prisma migrate deploy` from the request. It refuses once `kodpress_installed` is set, but is open on any database without that option.
+- **Only SQLite works** — `src/lib/db.ts` builds only the SQLite adapter, and Prisma fixes the provider per schema, so "MySQL primary" (ADR-001-C) needs a decision before release.
+- **Session role is baked into the JWT at login** — role changes and deactivated users take effect only after the session expires.
+- **Nav shows every screen to every role**; 11 linked admin URLs (media/new, users/new, users/profile, settings sub-pages, menus, widgets, plugins/new) still 404, and 7 screens (media, comments, themes, plugins, users, settings, help) are placeholders.
+- **No CI** — run `npm test`, `npx tsc --noEmit`, and `npx next build` before merging to `release`.
 
 ---
 
