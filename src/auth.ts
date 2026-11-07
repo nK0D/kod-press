@@ -3,6 +3,7 @@ import { authConfig } from './auth.config';
 import Credentials from 'next-auth/providers/credentials';
 import { db } from '@/lib/db';
 import bcrypt from 'bcryptjs';
+import { roleFromCapabilities } from '@/lib/access';
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,
@@ -48,20 +49,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             return null;
           }
 
-          // Retrieve role from capabilities in UserMeta
-          const capMeta = user.meta.find((m) => m.key === 'capabilities');
-          let role = 'subscriber';
-          if (capMeta) {
-            try {
-              const caps = JSON.parse(capMeta.value);
-              const userRoles = Object.keys(caps);
-              if (userRoles.length > 0) {
-                role = userRoles[0];
-              }
-            } catch (e) {
-              console.error('Failed to parse capabilities JSON:', e);
-            }
-          }
+          const role = roleFromCapabilities(user.meta.find((m) => m.key === 'capabilities')?.value);
 
           return {
             id: String(user.id),

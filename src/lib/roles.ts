@@ -75,6 +75,9 @@ export const ROLES = {
 
 export type RoleName = keyof typeof ROLES;
 
+/** Every capability any role can hold (administrator holds them all). */
+export type Capability = (typeof ROLES)['administrator']['caps'][number];
+
 /**
  * Helper to check if a role name is valid.
  */

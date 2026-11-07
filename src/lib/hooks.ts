@@ -9,7 +9,7 @@ interface RegisteredCallback {
   id: symbol;
 }
 
-class HookServer {
+export class HookServer {
   private actions = new Map<string, RegisteredCallback[]>();
   private filters = new Map<string, RegisteredCallback[]>();
   private didActions = new Map<string, number>();

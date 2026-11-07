@@ -1,7 +1,8 @@
 import { auth } from '@/auth';
 import { redirect } from 'next/navigation';
-import { currentUserCan } from './capabilities';
 import bcrypt from 'bcryptjs';
+import { actorFromSession, can, type Actor } from './access';
+import type { Capability } from './roles';
 
 /**
  * Returns the currently authenticated user session or null.
@@ -23,15 +24,33 @@ export async function requireAuth() {
 }
 
 /**
- * Ensures the logged-in user possesses a specific capability, redirecting to the admin root if unauthorized.
+ * Returns the signed-in Actor, or null for guests.
  */
-export async function requireCap(cap: string) {
-  const user = await requireAuth();
-  const hasCap = await currentUserCan(cap);
-  if (!hasCap) {
+export async function getActor(): Promise<Actor | null> {
+  const session = await auth();
+  return actorFromSession(session?.user);
+}
+
+/**
+ * Ensures there is a signed-in Actor, redirecting to the login page if not.
+ */
+export async function requireActor(): Promise<Actor> {
+  const actor = await getActor();
+  if (!actor) {
+    redirect('/admin/login');
+  }
+  return actor;
+}
+
+/**
+ * Ensures the signed-in Actor holds a capability, redirecting to the admin root if not.
+ */
+export async function requireCap(cap: Capability): Promise<Actor> {
+  const actor = await requireActor();
+  if (!can(actor, cap)) {
     redirect('/admin');
   }
-  return user;
+  return actor;
 }
 
 /**

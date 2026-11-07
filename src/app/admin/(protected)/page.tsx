@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { db } from '@/lib/db';
 import { getOption } from '@/lib/options';
+import { content } from '@/lib/content';
 import DashboardWelcome from '@/components/admin/DashboardWelcome';
 import QuickDraft from '@/components/admin/QuickDraft';
 import { FileText, Layers, MessageSquare, Palette, ArrowRight } from 'lucide-react';
@@ -9,28 +10,19 @@ import { FileText, Layers, MessageSquare, Palette, ArrowRight } from 'lucide-rea
 export const revalidate = 0; // Disable server cache for dynamic dashboard statistics
 
 export default async function AdminDashboard() {
-  // Query database statistics
-  const [postsCount, pagesCount, pendingCommentsCount, activeTheme, recentPosts, recentComments] = await Promise.all([
-    db.post.count({ where: { type: 'post', status: { not: 'trash' } } }),
-    db.post.count({ where: { type: 'page', status: { not: 'trash' } } }),
+  const [totals, pendingCommentsCount, activeTheme, recentPosts, recentComments] = await Promise.all([
+    content.totals(),
     db.comment.count({ where: { approved: '0' } }),
     getOption('active_theme').then((val) => val || 'kodpress-default'),
-    
-    // Fetch 5 latest published posts
-    db.post.findMany({
-      where: { type: 'post', status: 'publish' },
-      orderBy: { date: 'desc' },
-      take: 5,
-      include: { author: true },
-    }),
-
-    // Fetch 5 latest comments
+    content.latestPublished({ type: 'post', limit: 5 }),
     db.comment.findMany({
       orderBy: { date: 'desc' },
       take: 5,
       include: { post: true },
     }),
   ]);
+  const postsCount = totals.post ?? 0;
+  const pagesCount = totals.page ?? 0;
 
   return (
     <div className="space-y-6 sm:space-y-8 select-none">
@@ -109,14 +101,14 @@ export default async function AdminDashboard() {
                   {recentPosts.map((post) => (
                     <div key={post.id} className="py-2.5 flex items-center justify-between first:pt-0 last:pb-0">
                       <div>
-                        <Link href="/admin/posts" className="text-xs font-bold text-[var(--admin-text-primary)] hover:text-[var(--admin-accent)] transition-colors">
+                        <Link href={`/admin/posts/${post.id}`} className="text-xs font-bold text-[var(--admin-text-primary)] hover:text-[var(--admin-accent)] transition-colors">
                           {post.title}
                         </Link>
                         <p className="text-[10px] text-[var(--admin-text-secondary)] font-semibold mt-0.5">
                           Published {post.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                         </p>
                       </div>
-                      <Link href="/admin/posts" className="p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800 text-[var(--admin-text-secondary)]">
+                      <Link href={`/${post.slug}`} title="View post" className="p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800 text-[var(--admin-text-secondary)]">
                         <ArrowRight className="h-4 w-4" />
                       </Link>
                     </div>

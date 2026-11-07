@@ -22,7 +22,7 @@ export const authConfig = {
         }
 
         if (isLoggedIn) {
-          const userRole = (auth.user as any)?.role;
+          const userRole = auth.user?.role;
           
           // Protect admin-only subfolders from non-administrator roles
           if (
@@ -47,18 +47,18 @@ export const authConfig = {
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
-        token.login = (user as any).login;
-        token.displayName = (user as any).displayName;
-        token.role = (user as any).role;
+        token.login = user.login;
+        token.displayName = user.displayName;
+        token.role = user.role;
       }
       return token;
     },
     async session({ session, token }) {
       if (session.user && token) {
-        session.user.id = token.id as string;
-        (session.user as any).login = token.login as string;
-        (session.user as any).displayName = token.displayName as string;
-        (session.user as any).role = token.role as string;
+        session.user.id = token.id ?? '';
+        session.user.login = token.login;
+        session.user.displayName = token.displayName;
+        session.user.role = token.role;
       }
       return session;
     },

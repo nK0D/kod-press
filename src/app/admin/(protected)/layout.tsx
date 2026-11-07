@@ -24,8 +24,8 @@ export default async function AdminLayout({
     ? {
         name: user.name || null,
         email: user.email || null,
-        displayName: (user as any).displayName || user.name || null,
-        role: (user as any).role || 'subscriber',
+        displayName: user.displayName || user.name || null,
+        role: user.role || 'subscriber',
       }
     : null;
 

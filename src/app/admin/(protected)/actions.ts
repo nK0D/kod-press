@@ -1,46 +1,34 @@
 'use server';
 
-import { db } from '@/lib/db';
-import { auth } from '@/auth';
 import { revalidatePath } from 'next/cache';
+import { requireActor } from '@/lib/auth-utils';
+import { content } from '@/lib/content';
+import { actionErrorMessage } from '@/lib/content/action-error';
 
 /**
  * Server action to create a new quick draft post from the dashboard.
  */
 export async function createQuickDraft(formData: FormData) {
-  const session = await auth();
-  if (!session?.user) {
-    throw new Error('Unauthorized access');
-  }
-
-  const title = (formData.get('title') as string) || 'Untitled Draft';
-  const content = (formData.get('content') as string) || '';
-  const authorId = parseInt(session.user.id ?? '0', 10);
-
-  if (isNaN(authorId)) {
-    throw new Error('Invalid author session ID');
-  }
-
-  // Create a unique slug for the draft
-  const slug = `quick-draft-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+  const actor = await requireActor();
 
   try {
-    await db.post.create({
-      data: {
-        title,
-        content,
-        status: 'draft',
-        authorId,
-        slug,
-        commentStatus: 'open',
-        pingStatus: 'open',
-      },
+    await content.save(actor, {
+      type: 'post',
+      title: String(formData.get('title') ?? '').trim() || 'Untitled Draft',
+      content: String(formData.get('content') ?? '')
+        .split(/\n{2,}/)
+        .filter((paragraph) => paragraph.trim())
+        .map((paragraph) => `<p>${escapeHtml(paragraph.trim())}</p>`)
+        .join(''),
+      status: 'draft',
     });
-
     revalidatePath('/admin');
     return { success: true };
-  } catch (error: any) {
-    console.error('Failed to create quick draft:', error);
-    return { success: false, error: error.message || 'Failed to save draft.' };
+  } catch (error) {
+    return { success: false, error: actionErrorMessage(error) };
   }
+}
+
+function escapeHtml(text: string) {
+  return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>');
 }
