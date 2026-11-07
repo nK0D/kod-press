@@ -28,7 +28,9 @@ const CONTENT_OPTIONS: sanitizeHtml.IOptions = {
 };
 
 export function sanitizeContent(html: string): string {
-  return sanitizeHtml(html, CONTENT_OPTIONS).trim();
+  return sanitizeHtml(html, CONTENT_OPTIONS)
+    .trim()
+    .replace(/(?:<p>\s*(?:<br \/>)?\s*<\/p>\s*)+$/, '');
 }
 
 /** Strips every tag, for plain-text fields such as excerpts. */

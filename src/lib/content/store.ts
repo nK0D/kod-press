@@ -114,7 +114,8 @@ export interface SaveInput {
   excerpt?: string;
   /** Blank means "generate from the title". */
   slug?: string;
-  status: EditableStatus;
+  /** One of EditableStatus. Anything else (forms can send anything) is rejected. */
+  status: string;
   commentStatus?: 'open' | 'closed';
   pingStatus?: 'open' | 'closed';
   parent?: number;

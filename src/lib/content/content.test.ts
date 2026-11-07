@@ -94,7 +94,6 @@ describe('saving posts', () => {
 
   it('rejects unknown types and statuses', async () => {
     await expect(content.save(admin, { type: 'widget', title: 'x', status: 'draft' })).rejects.toThrow('Unknown post type');
-    // @ts-expect-error — forms can send anything
     await expect(content.save(admin, { type: 'post', title: 'x', status: 'trash' })).rejects.toThrow('valid status');
   });
 
@@ -277,5 +276,12 @@ describe('managing terms', () => {
 
   it('requires the matching capability', async () => {
     await expect(content.terms.create(author, 'category', { name: 'Nope' })).rejects.toBeInstanceOf(AccessDenied);
+  });
+});
+
+describe('content cleanup', () => {
+  it('drops trailing empty paragraphs the editor leaves behind', async () => {
+    const post = await content.save(author, { type: 'post', title: 'Tidy', content: '<h2>Hi</h2><p>Body</p><p></p><p><br></p>', status: 'draft' });
+    expect(post.content).toBe('<h2>Hi</h2><p>Body</p>');
   });
 });
