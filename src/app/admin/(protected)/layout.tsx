@@ -5,8 +5,8 @@ import AdminShell from '@/components/admin/AdminShell';
 import '../admin.css'; // Load admin CSS variables
 
 export const metadata = {
-  title: 'Depot Admin Area',
-  description: 'Administrator panel for Depot CMS.',
+  title: 'KodPress Admin Area',
+  description: 'Administrator panel for KodPress CMS.',
 };
 
 export default async function AdminLayout({
@@ -17,7 +17,7 @@ export default async function AdminLayout({
   const user = await requireAuth();
   
   // Retrieve site name from Options database
-  const siteName = (await getOption('blogname')) || 'Depot';
+  const siteName = (await getOption('blogname')) || 'KodPress';
 
   // Map Session User properties to shell-friendly contract
   const userProps = user

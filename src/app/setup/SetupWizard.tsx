@@ -14,8 +14,8 @@ export default function SetupWizard() {
   const [dbProvider, setDbProvider] = useState('sqlite');
   const [dbUrl, setDbUrl] = useState('file:./dev.db');
   
-  const [siteName, setSiteName] = useState('My Depot Site');
-  const [siteTagline, setSiteTagline] = useState('Just another Depot site');
+  const [siteName, setSiteName] = useState('My KodPress Site');
+  const [siteTagline, setSiteTagline] = useState('Just another KodPress site');
   const [siteEmail, setSiteEmail] = useState('admin@example.com');
   
   const [adminUsername, setAdminUsername] = useState('admin');
@@ -102,7 +102,7 @@ export default function SetupWizard() {
     <div className="flex-1 flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-gradient-to-tr from-slate-900 via-indigo-950 to-slate-900 text-slate-100 min-h-screen">
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
         <h1 className="text-4xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-violet-300 to-indigo-200">
-          DEPOT
+          KODPRESS
         </h1>
         <p className="mt-2 text-sm text-slate-400">
           Modern CMS Setup Wizard
@@ -153,9 +153,9 @@ export default function SetupWizard() {
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-indigo-900/40 border border-indigo-700/30 text-indigo-400 mb-2">
                   🚀
                 </div>
-                <h2 className="text-2xl font-bold text-slate-100">Welcome to Depot!</h2>
+                <h2 className="text-2xl font-bold text-slate-100">Welcome to KodPress!</h2>
                 <p className="text-slate-400 text-sm leading-relaxed">
-                  Depot is a modern, lightweight, WordPress-inspired Content Management System built on Next.js, React, and TypeScript.
+                  KodPress is a modern, lightweight, WordPress-inspired Content Management System built on Next.js, React, and TypeScript.
                 </p>
                 <p className="text-slate-400 text-sm leading-relaxed">
                   We'll help you connect your database, customize your site's core properties, and create your administrator profile in just a few clicks.
@@ -250,7 +250,7 @@ export default function SetupWizard() {
               <div>
                 <h3 className="text-lg font-bold text-slate-100">Site Information</h3>
                 <p className="text-slate-400 text-xs mt-1">
-                  Enter basic metadata for your Depot website.
+                  Enter basic metadata for your KodPress website.
                 </p>
               </div>
 
@@ -390,7 +390,7 @@ export default function SetupWizard() {
               </div>
               <h2 className="text-2xl font-bold text-slate-100">Installation Successful!</h2>
               <p className="text-slate-400 text-sm leading-relaxed">
-                Depot has been successfully configured and installed! Your database schema is set up, site settings have been stored, and your administrator user is active.
+                KodPress has been successfully configured and installed! Your database schema is set up, site settings have been stored, and your administrator user is active.
               </p>
               <div className="pt-4">
                 <button

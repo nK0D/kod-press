@@ -14,7 +14,7 @@ export default async function AdminDashboard() {
     db.post.count({ where: { type: 'post', status: { not: 'trash' } } }),
     db.post.count({ where: { type: 'page', status: { not: 'trash' } } }),
     db.comment.count({ where: { approved: '0' } }),
-    getOption('active_theme').then((val) => val || 'depot-default'),
+    getOption('active_theme').then((val) => val || 'kodpress-default'),
     
     // Fetch 5 latest published posts
     db.post.findMany({

@@ -104,7 +104,7 @@ Build the full admin panel shell — sidebar navigation, top bar, dashboard with
 - [ ] In collapsed mode: only icons visible, tooltip on hover
 - [ ] Active item: highlighted with accent color and left border
 - [ ] Sub-items: indented, collapsible section
-- [ ] Site name + Depot version at sidebar bottom
+- [ ] Site name + KodPress version at sidebar bottom
 
 ### 4.4 — Top Bar
 - [ ] `src/components/admin/Topbar.tsx`
@@ -131,7 +131,7 @@ Build the full admin panel shell — sidebar navigation, top bar, dashboard with
   - Latest published posts (5 items)
   - Latest comments (5 items, with approve/spam actions)
 - [ ] **Widget 4: Welcome Panel** (first-time only, dismissable)
-  - "Welcome to Depot! Here's what to do next:"
+  - "Welcome to KodPress! Here's what to do next:"
   - Links: Create your first post, Set up your homepage, Set your site title
 
 ### 4.6 — Shared Admin UI Components

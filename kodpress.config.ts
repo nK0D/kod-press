@@ -1,7 +1,7 @@
 /**
- * Depot CMS Configuration File
+ * KodPress CMS Configuration File
  */
-export interface DepotConfig {
+export interface KodPressConfig {
   name: string;
   version: string;
   uploadDir: string;
@@ -9,10 +9,10 @@ export interface DepotConfig {
   themesDir: string;
 }
 
-export const config: DepotConfig = {
-  name: 'Depot',
+export const config: KodPressConfig = {
+  name: 'KodPress',
   version: '1.0.0',
-  uploadDir: process.env.DEPOT_UPLOAD_DIR || 'public/uploads',
+  uploadDir: process.env.KODPRESS_UPLOAD_DIR || 'public/uploads',
   pluginsDir: 'plugins',
   themesDir: 'themes',
 };

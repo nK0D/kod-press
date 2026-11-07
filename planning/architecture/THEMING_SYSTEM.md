@@ -1,4 +1,4 @@
-# Depot — Theming System Architecture
+# KodPress — Theming System Architecture
 
 > Design of the component-shadowing theme system for the public frontend.
 
@@ -6,7 +6,7 @@
 
 ## Overview
 
-Depot's theming system allows the public frontend's appearance to be changed completely by installing and activating a different theme — without touching core files. This is achieved through **Component Shadowing**: themes can override any core frontend component by providing their own version of the same file.
+KodPress's theming system allows the public frontend's appearance to be changed completely by installing and activating a different theme — without touching core files. This is achieved through **Component Shadowing**: themes can override any core frontend component by providing their own version of the same file.
 
 The admin panel is NEVER themed — it always uses Shadcn/UI.
 
@@ -16,7 +16,7 @@ The admin panel is NEVER themed — it always uses Shadcn/UI.
 
 ```
 themes/
-└── depot-default/
+└── kodpress-default/
     ├── theme.json            ← Theme metadata
     ├── style.css             ← Main theme stylesheet
     ├── screenshot.png        ← 1200×900 theme preview image
@@ -40,12 +40,12 @@ themes/
 
 ```json
 {
-  "name": "Depot Default",
+  "name": "KodPress Default",
   "version": "1.0.0",
-  "author": "Depot Team",
-  "authorUri": "https://depot.dev",
-  "description": "The default theme for Depot CMS.",
-  "textDomain": "depot-default",
+  "author": "KodPress Team",
+  "authorUri": "https://kodpress.dev",
+  "description": "The default theme for KodPress CMS.",
+  "textDomain": "kodpress-default",
   "tags": ["blog", "two-columns", "custom-colors"],
   "screenshot": "./screenshot.png",
   
@@ -122,7 +122,7 @@ export async function resolveComponent(name: string): Promise<ComponentType<any>
     return componentCache.get(cacheKey)!;
   }
   
-  const activeTheme = await getOption('active_theme') ?? 'depot-default';
+  const activeTheme = await getOption('active_theme') ?? 'kodpress-default';
   
   // Try theme override first
   try {
@@ -143,10 +143,10 @@ export function invalidateThemeCache() {
 }
 ```
 
-### The `<DepotComponent>` Wrapper
+### The `<KodPressComponent>` Wrapper
 
 ```tsx
-// src/components/frontend/DepotComponent.tsx
+// src/components/frontend/KodPressComponent.tsx
 // NOTE: This must be a Server Component since it does async imports
 
 interface Props {
@@ -154,7 +154,7 @@ interface Props {
   [key: string]: any; // Props passed through to the component
 }
 
-export async function DepotComponent({ name, ...props }: Props) {
+export async function KodPressComponent({ name, ...props }: Props) {
   const Component = await resolveComponent(name);
   return <Component {...props} />;
 }
@@ -164,12 +164,12 @@ export async function DepotComponent({ name, ...props }: Props) {
 
 ```tsx
 // In app/[[...slug]]/page.tsx when rendering a post:
-<DepotComponent name="PostSingle" post={post} />
+<KodPressComponent name="PostSingle" post={post} />
 
 // In the root frontend layout:
-<DepotComponent name="Header" />
+<KodPressComponent name="Header" />
 {children}
-<DepotComponent name="Footer" />
+<KodPressComponent name="Footer" />
 ```
 
 ---
@@ -210,7 +210,7 @@ These live in `src/components/frontend/` and provide the default rendering. Them
 Theme customization works through CSS variables injected into the document. The customizer settings are stored in `options` as JSON:
 
 ```
-options.key = "theme_depot-default_mods"
+options.key = "theme_kodpress-default_mods"
 options.value = '{"accent":"#6366f1","background":"#ffffff","bodyFont":"Inter"}'
 ```
 
@@ -267,6 +267,6 @@ A minimal theme only needs `theme.json` and `style.css` — all core components 
 
 - **Never modify core components** (`src/components/frontend/`) for theme-specific styling — use theme overrides
 - **Theme components receive the same props as core components** — maintain the interface
-- **`DepotComponent` is async** — it must be used in Server Components only
+- **`KodPressComponent` is async** — it must be used in Server Components only
 - **Cache invalidation** is critical: always call `invalidateThemeCache()` on theme switch
 - **Screenshots**: themes must include a 1200×900 `screenshot.png` for the admin theme grid

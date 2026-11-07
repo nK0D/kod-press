@@ -45,4 +45,4 @@ next-env.d.ts
 # local database & install state
 *.db
 *.db-journal
-depot-config.json
+kodpress-config.json

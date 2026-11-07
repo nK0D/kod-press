@@ -1,4 +1,4 @@
-# Depot — Routing System Architecture (Permalink System)
+# KodPress — Routing System Architecture (Permalink System)
 
 > Detailed design of the configurable permalink system — the equivalent of WordPress Settings → Permalinks.
 
@@ -6,7 +6,7 @@
 
 ## Overview
 
-WordPress's permalink system lets site admins configure URL structures like `/%year%/%month%/%postname%/` instead of `/?p=123`. Depot replicates this entirely using Next.js's catch-all routes.
+WordPress's permalink system lets site admins configure URL structures like `/%year%/%month%/%postname%/` instead of `/?p=123`. KodPress replicates this entirely using Next.js's catch-all routes.
 
 ---
 
@@ -138,7 +138,7 @@ export const permalinkRouter = new PermalinkRouter();
 
 ## Resolution Hierarchy
 
-When a URL matches, Depot tries to find content in this order:
+When a URL matches, KodPress tries to find content in this order:
 
 1. **Page** — look up `posts` table where `type='page'` AND `slug` matches the last segment
 2. **Post** — look up `posts` table where `type='post'` AND `slug` matches AND date fields match (if present)

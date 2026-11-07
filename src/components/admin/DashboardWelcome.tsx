@@ -8,7 +8,7 @@ export default function DashboardWelcome() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const dismissed = localStorage.getItem('depot-welcome-dismissed') === 'true';
+    const dismissed = localStorage.getItem('kodpress-welcome-dismissed') === 'true';
     if (!dismissed) {
       setIsVisible(true);
     }
@@ -16,7 +16,7 @@ export default function DashboardWelcome() {
 
   const handleDismiss = () => {
     setIsVisible(false);
-    localStorage.setItem('depot-welcome-dismissed', 'true');
+    localStorage.setItem('kodpress-welcome-dismissed', 'true');
   };
 
   if (!isVisible) return null;
@@ -38,7 +38,7 @@ export default function DashboardWelcome() {
         </div>
         <div>
           <h2 className="text-xl sm:text-2xl font-black tracking-tight text-slate-100">
-            Welcome to Depot!
+            Welcome to KodPress!
           </h2>
           <p className="text-slate-400 text-xs font-semibold mt-0.5">
             We've assembled some links to get you started:

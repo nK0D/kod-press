@@ -1,6 +1,6 @@
-# Depot — Master Plan (All Phases)
+# KodPress — Master Plan (All Phases)
 
-> This is the complete end-to-end plan for the Depot CMS project. Each phase builds on the previous. Phases are designed to be achievable within a single agent session (or a few sessions for larger phases).
+> This is the complete end-to-end plan for the KodPress CMS project. Each phase builds on the previous. Phases are designed to be achievable within a single agent session (or a few sessions for larger phases).
 
 ---
 
@@ -31,21 +31,21 @@ Phase 16: REST API           ← depends on Phase 5, 6, 7, 8
 **Goal**: A working Next.js project with a functioning web-based setup wizard.
 
 **Deliverables**:
-- Next.js 14 app scaffolded in `depot/`
+- Next.js 14 app scaffolded in `kod-press/`
 - Environment config (`src/lib/env.ts` with Zod)
-- Depot config file (`depot.config.ts`)
+- KodPress config file (`kodpress.config.ts`)
 - `/setup` wizard (5 steps: Welcome → DB Config → Site Info → Admin Account → Done)
 - `middleware.ts` — redirects `/admin/*` to login if not authenticated, redirects `/setup` away if already installed
 - HookServer singleton (`src/lib/hooks.ts`) — initialized but empty
 - Basic `src/lib/db.ts` Prisma singleton
 
 **Key Files**:
-- `depot/src/app/setup/page.tsx` + steps
-- `depot/src/lib/env.ts`
-- `depot/src/lib/db.ts`
-- `depot/src/lib/hooks.ts`
-- `depot/src/middleware.ts`
-- `depot/depot.config.ts`
+- `kod-press/src/app/setup/page.tsx` + steps
+- `kod-press/src/lib/env.ts`
+- `kod-press/src/lib/db.ts`
+- `kod-press/src/lib/hooks.ts`
+- `kod-press/src/middleware.ts`
+- `kod-press/kodpress.config.ts`
 
 **Estimated Sessions**: 1–2
 
@@ -62,9 +62,9 @@ Phase 16: REST API           ← depends on Phase 5, 6, 7, 8
 - Prisma client properly typed
 
 **Key Files**:
-- `depot/prisma/schema.prisma`
-- `depot/prisma/seed.ts`
-- `depot/prisma/migrations/`
+- `kod-press/prisma/schema.prisma`
+- `kod-press/prisma/seed.ts`
+- `kod-press/prisma/migrations/`
 
 **Estimated Sessions**: 1
 
@@ -82,10 +82,10 @@ Phase 16: REST API           ← depends on Phase 5, 6, 7, 8
 - "Forgot password" flow (email + token)
 
 **Key Files**:
-- `depot/src/app/api/auth/[...nextauth]/route.ts`
-- `depot/auth.ts` (NextAuth config)
-- `depot/src/app/admin/login/page.tsx`
-- `depot/src/lib/auth.ts` (helper utilities)
+- `kod-press/src/app/api/auth/[...nextauth]/route.ts`
+- `kod-press/auth.ts` (NextAuth config)
+- `kod-press/src/app/admin/login/page.tsx`
+- `kod-press/src/lib/auth.ts` (helper utilities)
 
 **Estimated Sessions**: 1
 
@@ -104,11 +104,11 @@ Phase 16: REST API           ← depends on Phase 5, 6, 7, 8
 - Breadcrumbs system
 
 **Key Files**:
-- `depot/src/app/admin/layout.tsx`
-- `depot/src/components/admin/Sidebar.tsx`
-- `depot/src/components/admin/Topbar.tsx`
-- `depot/src/app/admin/page.tsx` (dashboard)
-- `depot/src/components/admin/widgets/`
+- `kod-press/src/app/admin/layout.tsx`
+- `kod-press/src/components/admin/Sidebar.tsx`
+- `kod-press/src/components/admin/Topbar.tsx`
+- `kod-press/src/app/admin/page.tsx` (dashboard)
+- `kod-press/src/components/admin/widgets/`
 
 **Estimated Sessions**: 2
 
@@ -127,12 +127,12 @@ Phase 16: REST API           ← depends on Phase 5, 6, 7, 8
 - Custom Post Types — registration API (`registerPostType()`)
 
 **Key Files**:
-- `depot/src/app/admin/posts/page.tsx`
-- `depot/src/app/admin/posts/[id]/page.tsx`
-- `depot/src/app/admin/pages/page.tsx`
-- `depot/src/app/admin/pages/[id]/page.tsx`
-- `depot/src/components/admin/editor/`
-- `depot/src/lib/post-types.ts`
+- `kod-press/src/app/admin/posts/page.tsx`
+- `kod-press/src/app/admin/posts/[id]/page.tsx`
+- `kod-press/src/app/admin/pages/page.tsx`
+- `kod-press/src/app/admin/pages/[id]/page.tsx`
+- `kod-press/src/components/admin/editor/`
+- `kod-press/src/lib/post-types.ts`
 
 **Estimated Sessions**: 3
 
@@ -151,10 +151,10 @@ Phase 16: REST API           ← depends on Phase 5, 6, 7, 8
 - Local storage adapter (files in `public/uploads/YYYY/MM/`)
 
 **Key Files**:
-- `depot/src/app/admin/media/page.tsx`
-- `depot/src/app/api/media/upload/route.ts`
-- `depot/src/lib/media.ts`
-- `depot/src/components/admin/MediaLibrary.tsx`
+- `kod-press/src/app/admin/media/page.tsx`
+- `kod-press/src/app/api/media/upload/route.ts`
+- `kod-press/src/lib/media.ts`
+- `kod-press/src/components/admin/MediaLibrary.tsx`
 
 **Estimated Sessions**: 2
 
@@ -171,8 +171,8 @@ Phase 16: REST API           ← depends on Phase 5, 6, 7, 8
 - Category/tag selection in post editor
 
 **Key Files**:
-- `depot/src/app/admin/taxonomies/[taxonomy]/page.tsx`
-- `depot/src/lib/taxonomies.ts`
+- `kod-press/src/app/admin/taxonomies/[taxonomy]/page.tsx`
+- `kod-press/src/lib/taxonomies.ts`
 
 **Estimated Sessions**: 1
 
@@ -190,10 +190,10 @@ Phase 16: REST API           ← depends on Phase 5, 6, 7, 8
 - Avatar support (Gravatar + local upload)
 
 **Key Files**:
-- `depot/src/app/admin/users/page.tsx`
-- `depot/src/app/admin/users/[id]/page.tsx`
-- `depot/src/lib/roles.ts`
-- `depot/src/lib/capabilities.ts`
+- `kod-press/src/app/admin/users/page.tsx`
+- `kod-press/src/app/admin/users/[id]/page.tsx`
+- `kod-press/src/lib/roles.ts`
+- `kod-press/src/lib/capabilities.ts`
 
 **Estimated Sessions**: 1
 
@@ -214,9 +214,9 @@ Phase 16: REST API           ← depends on Phase 5, 6, 7, 8
 - The `[[...slug]]` catch-all route implementation
 
 **Key Files**:
-- `depot/src/app/admin/settings/permalinks/page.tsx`
-- `depot/src/lib/routing.ts`
-- `depot/src/app/[[...slug]]/page.tsx`
+- `kod-press/src/app/admin/settings/permalinks/page.tsx`
+- `kod-press/src/lib/routing.ts`
+- `kod-press/src/app/[[...slug]]/page.tsx`
 
 **Estimated Sessions**: 2
 
@@ -226,19 +226,19 @@ Phase 16: REST API           ← depends on Phase 5, 6, 7, 8
 **Goal**: A complete, switchable theming system for the public frontend.
 
 **Deliverables**:
-- Default theme (`themes/depot-default/`)
+- Default theme (`themes/kodpress-default/`)
 - `theme.json` schema and reader
-- `DepotComponent` resolver (`src/lib/theme.ts`)
+- `KodPressComponent` resolver (`src/lib/theme.ts`)
 - Theme activation via admin panel (Appearance → Themes)
 - Theme customizer (basic: colors, fonts, logo via CSS variables)
 - Core frontend components: `Header`, `Footer`, `PostCard`, `PostSingle`, `PageSingle`, `Sidebar`, `SearchForm`, `CommentList`, `Pagination`
 - Frontend pages: Home (blog index), Single Post, Single Page, Category archive, Tag archive, Author archive, Search results, 404
 
 **Key Files**:
-- `depot/themes/depot-default/`
-- `depot/src/lib/theme.ts`
-- `depot/src/components/frontend/`
-- `depot/src/app/admin/themes/page.tsx`
+- `kod-press/themes/kodpress-default/`
+- `kod-press/src/lib/theme.ts`
+- `kod-press/src/components/frontend/`
+- `kod-press/src/app/admin/themes/page.tsx`
 
 **Estimated Sessions**: 3
 
@@ -252,14 +252,14 @@ Phase 16: REST API           ← depends on Phase 5, 6, 7, 8
 - Plugin discovery & loading system (scans `plugins/` at startup)
 - Plugin activation/deactivation (stored in `options`)
 - Plugin list in Admin (Plugins → Installed Plugins)
-- A working example plugin: `plugins/depot-seo/` (adds SEO meta fields to post editor)
+- A working example plugin: `plugins/kodpress-seo/` (adds SEO meta fields to post editor)
 - Plugin API documentation
 
 **Key Files**:
-- `depot/src/lib/hooks.ts` (complete implementation)
-- `depot/src/lib/plugins.ts` (discovery & loading)
-- `depot/src/app/admin/plugins/page.tsx`
-- `depot/plugins/depot-seo/index.ts`
+- `kod-press/src/lib/hooks.ts` (complete implementation)
+- `kod-press/src/lib/plugins.ts` (discovery & loading)
+- `kod-press/src/app/admin/plugins/page.tsx`
+- `kod-press/plugins/kodpress-seo/index.ts`
 
 **Estimated Sessions**: 2
 
@@ -277,9 +277,9 @@ Phase 16: REST API           ← depends on Phase 5, 6, 7, 8
 - Discussion settings integration (from Phase 9)
 
 **Key Files**:
-- `depot/src/app/admin/comments/page.tsx`
-- `depot/src/components/frontend/Comments.tsx`
-- `depot/src/app/api/comments/route.ts`
+- `kod-press/src/app/admin/comments/page.tsx`
+- `kod-press/src/components/frontend/Comments.tsx`
+- `kod-press/src/app/api/comments/route.ts`
 
 **Estimated Sessions**: 1
 
@@ -296,10 +296,10 @@ Phase 16: REST API           ← depends on Phase 5, 6, 7, 8
 - `wp_nav_menu()` equivalent component
 
 **Key Files**:
-- `depot/src/app/admin/menus/page.tsx`
-- `depot/src/components/admin/MenuBuilder.tsx`
-- `depot/src/components/frontend/NavMenu.tsx`
-- `depot/src/lib/menus.ts`
+- `kod-press/src/app/admin/menus/page.tsx`
+- `kod-press/src/components/admin/MenuBuilder.tsx`
+- `kod-press/src/components/frontend/NavMenu.tsx`
+- `kod-press/src/lib/menus.ts`
 
 **Estimated Sessions**: 2
 
@@ -312,13 +312,13 @@ Phase 16: REST API           ← depends on Phase 5, 6, 7, 8
 - Widget area registration in themes (`theme.json: widgetAreas`)
 - Built-in widgets: Search, Recent Posts, Recent Comments, Archives, Categories, Tag Cloud, Text, HTML, Image
 - Widgets admin page (drag-and-drop into sidebar areas)
-- `DepotSidebar` component for the frontend
+- `KodPressSidebar` component for the frontend
 - Widget configuration panel (each widget has its own settings)
 
 **Key Files**:
-- `depot/src/app/admin/widgets/page.tsx`
-- `depot/src/lib/widgets.ts`
-- `depot/src/components/frontend/Sidebar.tsx`
+- `kod-press/src/app/admin/widgets/page.tsx`
+- `kod-press/src/lib/widgets.ts`
+- `kod-press/src/components/frontend/Sidebar.tsx`
 
 **Estimated Sessions**: 2
 
@@ -332,14 +332,14 @@ Phase 16: REST API           ← depends on Phase 5, 6, 7, 8
 - Sections: Getting Started, Content Management, Theming, Plugins, Settings, API Reference, Keyboard Shortcuts
 - Contextual help tabs (like WordPress's "Help" tab on each admin screen)
 - Search across all docs
-- Markdown-rendered help articles (stored in `depot/docs/` as `.md` files)
+- Markdown-rendered help articles (stored in `kod-press/docs/` as `.md` files)
 - "What's New" changelog page
 
 **Key Files**:
-- `depot/src/app/admin/help/page.tsx`
-- `depot/src/app/admin/help/[section]/page.tsx`
-- `depot/docs/` (markdown help articles)
-- `depot/src/components/admin/HelpPanel.tsx`
+- `kod-press/src/app/admin/help/page.tsx`
+- `kod-press/src/app/admin/help/[section]/page.tsx`
+- `kod-press/docs/` (markdown help articles)
+- `kod-press/src/components/admin/HelpPanel.tsx`
 
 **Estimated Sessions**: 1
 
@@ -361,10 +361,10 @@ Phase 16: REST API           ← depends on Phase 5, 6, 7, 8
 - Plugin-extendable: plugins can register new API routes
 
 **Key Files**:
-- `depot/src/app/api/posts/route.ts`
-- `depot/src/app/api/posts/[id]/route.ts`
+- `kod-press/src/app/api/posts/route.ts`
+- `kod-press/src/app/api/posts/[id]/route.ts`
 - etc.
-- `depot/src/lib/api-auth.ts`
+- `kod-press/src/lib/api-auth.ts`
 
 **Estimated Sessions**: 2
 

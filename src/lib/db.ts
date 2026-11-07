@@ -12,7 +12,7 @@ function createPrismaClient() {
   let provider = process.env.DATABASE_PROVIDER || 'sqlite';
 
   try {
-    const configPath = path.resolve(process.cwd(), 'depot-config.json');
+    const configPath = path.resolve(process.cwd(), 'kodpress-config.json');
     if (fs.existsSync(configPath)) {
       const configData = JSON.parse(fs.readFileSync(configPath, 'utf8'));
       if (configData.database) {

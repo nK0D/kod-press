@@ -1,4 +1,4 @@
-# Depot — Hook System Architecture
+# KodPress — Hook System Architecture
 
 > Detailed design of the WordPress-compatible plugin hook system.
 
@@ -6,7 +6,7 @@
 
 ## Overview
 
-The Hook System is the backbone of Depot's extensibility. It replicates WordPress's `add_action`, `add_filter`, `do_action`, and `apply_filters` functions in TypeScript.
+The Hook System is the backbone of KodPress's extensibility. It replicates WordPress's `add_action`, `add_filter`, `do_action`, and `apply_filters` functions in TypeScript.
 
 - **Actions**: Fire-and-forget side effects (send email, clear cache, log event)
 - **Filters**: Transform a value (modify content, alter a query, change a URL)
@@ -138,7 +138,7 @@ export const hooks = new HookServer();
 
 ## Core Hook Reference
 
-Below is the list of all hooks that Depot's core fires. Plugins use these to extend behavior.
+Below is the list of all hooks that KodPress's core fires. Plugins use these to extend behavior.
 
 ### Post Hooks
 | Hook | Type | When Fired | Args |
@@ -194,7 +194,7 @@ Below is the list of all hooks that Depot's core fires. Plugins use these to ext
 ## Plugin Example
 
 ```typescript
-// plugins/depot-cache/index.ts
+// plugins/kodpress-cache/index.ts
 import { hooks } from '@/lib/hooks';
 
 const cacheActionId = hooks.add_action('post.updated', async (post) => {
@@ -206,10 +206,10 @@ const contentFilterId = hooks.add_filter('post.content', async (content, post) =
 }, 10);
 
 export const plugin = {
-  name: 'Depot Cache',
+  name: 'KodPress Cache',
   version: '1.0.0',
   description: 'Clears cache when posts are updated.',
-  author: 'Depot Team',
+  author: 'KodPress Team',
   
   activate() {
     // Hooks are registered above at module load time

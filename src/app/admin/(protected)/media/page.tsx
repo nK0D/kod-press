@@ -20,7 +20,7 @@ export default function MediaAdmin() {
 
       <EmptyState
         title="No media files found"
-        message="Drag and drop or upload files to save them in Depot's file assets store. This will be implemented in Phase 6: Media Library."
+        message="Drag and drop or upload files to save them in KodPress's file assets store. This will be implemented in Phase 6: Media Library."
         action={{
           label: 'Add first attachment',
           href: '/admin/media/new',

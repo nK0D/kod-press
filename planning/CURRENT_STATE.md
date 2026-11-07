@@ -1,4 +1,4 @@
-# Depot — Current State & Session Handoff
+# KodPress — Current State & Session Handoff
 
 > **AGENT INSTRUCTION**: Read this file at the start of every session. Update it before ending a session or after completing a milestone. This is the living record of project progress.
 
@@ -48,42 +48,42 @@ Phase 16 [PENDING]   ░░░░░░░░░░░░░░░░░░░�
 ## ✅ Completed Work Log
 
 ### Phase 0: Documentation & Planning
-- [x] `depot/README.md` — Project vision & feasibility study  
-- [x] `depot/ARCHITECTURE.md` — Technical architecture (theming, plugins, routing, directory structure)  
-- [x] `depot/DATABASE_SCHEMA.md` — Initial Prisma schema (User, Post, Option, Meta tables)  
-- [x] `depot/planning/README.md` — Master planning index  
-- [x] `depot/planning/CURRENT_STATE.md` — This file  
-- [x] `depot/planning/HANDOFF_GUIDE.md` — Agent conventions & architecture rules  
-- [x] `depot/planning/MASTER_PLAN.md` — Full phased plan  
-- [x] `depot/planning/phases/PHASE_01_FOUNDATION.md`  
-- [x] `depot/planning/phases/PHASE_02_DATABASE.md`  
-- [x] `depot/planning/phases/PHASE_03_AUTH.md`  
-- [x] `depot/planning/phases/PHASE_04_ADMIN_CORE.md`  
-- [x] `depot/planning/phases/PHASE_05_CONTENT.md`  
-- [x] `depot/planning/phases/PHASE_06_MEDIA.md`  
-- [x] `depot/planning/phases/PHASE_07_TAXONOMY.md`  
-- [x] `depot/planning/phases/PHASE_08_USERS.md`  
-- [x] `depot/planning/phases/PHASE_09_SETTINGS.md`  
-- [x] `depot/planning/phases/PHASE_10_THEMING.md`  
-- [x] `depot/planning/phases/PHASE_11_PLUGINS.md`  
-- [x] `depot/planning/phases/PHASE_12_COMMENTS.md`  
-- [x] `depot/planning/phases/PHASE_13_MENUS.md`  
-- [x] `depot/planning/phases/PHASE_14_WIDGETS.md`  
-- [x] `depot/planning/phases/PHASE_15_HELP_DOCS.md`  
-- [x] `depot/planning/phases/PHASE_16_API_REST.md`  
-- [x] `depot/planning/architecture/DIRECTORY_STRUCTURE.md`  
-- [x] `depot/planning/architecture/HOOK_SYSTEM.md`  
-- [x] `depot/planning/architecture/ROUTING_SYSTEM.md`  
-- [x] `depot/planning/architecture/THEMING_SYSTEM.md`  
-- [x] `depot/planning/architecture/DATABASE_DESIGN.md`  
-- [x] `depot/planning/decisions/ADR_001_TECH_STACK.md`  
+- [x] `kod-press/README.md` — Project vision & feasibility study  
+- [x] `kod-press/ARCHITECTURE.md` — Technical architecture (theming, plugins, routing, directory structure)  
+- [x] `kod-press/DATABASE_SCHEMA.md` — Initial Prisma schema (User, Post, Option, Meta tables)  
+- [x] `kod-press/planning/README.md` — Master planning index  
+- [x] `kod-press/planning/CURRENT_STATE.md` — This file  
+- [x] `kod-press/planning/HANDOFF_GUIDE.md` — Agent conventions & architecture rules  
+- [x] `kod-press/planning/MASTER_PLAN.md` — Full phased plan  
+- [x] `kod-press/planning/phases/PHASE_01_FOUNDATION.md`  
+- [x] `kod-press/planning/phases/PHASE_02_DATABASE.md`  
+- [x] `kod-press/planning/phases/PHASE_03_AUTH.md`  
+- [x] `kod-press/planning/phases/PHASE_04_ADMIN_CORE.md`  
+- [x] `kod-press/planning/phases/PHASE_05_CONTENT.md`  
+- [x] `kod-press/planning/phases/PHASE_06_MEDIA.md`  
+- [x] `kod-press/planning/phases/PHASE_07_TAXONOMY.md`  
+- [x] `kod-press/planning/phases/PHASE_08_USERS.md`  
+- [x] `kod-press/planning/phases/PHASE_09_SETTINGS.md`  
+- [x] `kod-press/planning/phases/PHASE_10_THEMING.md`  
+- [x] `kod-press/planning/phases/PHASE_11_PLUGINS.md`  
+- [x] `kod-press/planning/phases/PHASE_12_COMMENTS.md`  
+- [x] `kod-press/planning/phases/PHASE_13_MENUS.md`  
+- [x] `kod-press/planning/phases/PHASE_14_WIDGETS.md`  
+- [x] `kod-press/planning/phases/PHASE_15_HELP_DOCS.md`  
+- [x] `kod-press/planning/phases/PHASE_16_API_REST.md`  
+- [x] `kod-press/planning/architecture/DIRECTORY_STRUCTURE.md`  
+- [x] `kod-press/planning/architecture/HOOK_SYSTEM.md`  
+- [x] `kod-press/planning/architecture/ROUTING_SYSTEM.md`  
+- [x] `kod-press/planning/architecture/THEMING_SYSTEM.md`  
+- [x] `kod-press/planning/architecture/DATABASE_DESIGN.md`  
+- [x] `kod-press/planning/decisions/ADR_001_TECH_STACK.md`  
 
 ### Phase 1: Foundation & Setup Wizard
-- [x] Next.js 16.2.10 scaffolded inside `depot/`
+- [x] Next.js 16.2.10 scaffolded inside `kod-press/`
 - [x] Initialized Prisma 7 with SQLite and SQLite driver adapters (`better-sqlite3`, `@prisma/adapter-better-sqlite3`)
 - [x] Created `src/lib/db.ts` Prisma Client singleton with Prisma 7 driver adapter pattern
 - [x] Created Zod-based environment variable validator `src/lib/env.ts`
-- [x] Created `depot.config.ts` CMS configuration
+- [x] Created `kodpress.config.ts` CMS configuration
 - [x] Created `HookServer` singleton `src/lib/hooks.ts` for plugin systems
 - [x] Created basic middleware for route protection in `src/middleware.ts`
 - [x] Implemented `/api/setup/test-db` and `/api/setup/install` API endpoints
@@ -103,10 +103,10 @@ Phase 16 [PENDING]   ░░░░░░░░░░░░░░░░░░░�
 
 | Date | Agent | What Was Done |
 |---|---|---|
-| 2026-07-04 | Agent A | Created `depot/README.md`, `depot/ARCHITECTURE.md`, `depot/DATABASE_SCHEMA.md` |
-| 2026-07-04 | Agent B | Created full `depot/planning/` directory with all planning & architecture docs |
+| 2026-07-04 | Agent A | Created `kod-press/README.md`, `kod-press/ARCHITECTURE.md`, `kod-press/DATABASE_SCHEMA.md` |
+| 2026-07-04 | Agent B | Created full `kod-press/planning/` directory with all planning & architecture docs |
 | 2026-07-04 | Current Agent | Executed Phase 1: bootstrapped Next.js, set up Prisma 7 SQLite adapter, created HookServer, env validation, route protection, setup APIs, and UI setup wizard |
-| 2026-07-04 | Current Agent | Executed Phase 2: expanded Prisma schema to all core models, configured seed script, ran database migrations, set up caching options utility, and enabled admin profile auto-migration. Added root `depot-config.json` generation. |
+| 2026-07-04 | Current Agent | Executed Phase 2: expanded Prisma schema to all core models, configured seed script, ran database migrations, set up caching options utility, and enabled admin profile auto-migration. Added root `kodpress-config.json` generation. |
 | 2026-07-04 | Current Agent | Executed Phase 3: Configured NextAuth.js v5 credentials login, mapped database roles/capabilities, updated middleware route protection, built forgot/reset flows. |
 | 2026-07-04 | Current Agent | Executed Phase 4: Built full admin shell (AdminShell, Sidebar, Topbar, Breadcrumbs), admin CSS variables, dark/light theme toggle, live dashboard stats, Quick Draft server action, 7 shared UI components, 9 placeholder admin pages. |
 
@@ -122,9 +122,9 @@ None. Scaffolded successfully without affecting planning/ or root md files.
 
 | Decision | Value |
 |---|---|
-| Project name | Depot |
-| Planning location | `depot/planning/` |
-| Project code location | `depot/` (Next.js app lives here) |
+| Project name | KodPress |
+| Planning location | `kod-press/planning/` |
+| Project code location | `kod-press/` (Next.js app lives here) |
 | Admin path | `/admin` |
 | API path | `/api` |
 | Frontend | Root of `app/` directory (not in a route group) |

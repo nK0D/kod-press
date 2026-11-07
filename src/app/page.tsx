@@ -7,11 +7,11 @@ export const revalidate = 0; // Disable static cache for setup checking
 
 export default async function Home() {
   let isInstalled = false;
-  let siteName = 'Depot';
-  let siteTagline = 'Just another Depot site';
+  let siteName = 'KodPress';
+  let siteTagline = 'Just another KodPress site';
 
   try {
-    const configPath = path.resolve(process.cwd(), 'depot-config.json');
+    const configPath = path.resolve(process.cwd(), 'kodpress-config.json');
     if (fs.existsSync(configPath)) {
       const configData = JSON.parse(fs.readFileSync(configPath, 'utf8'));
       if (configData.installed === true) {
@@ -44,7 +44,7 @@ export default async function Home() {
 
         <div className="space-y-6">
           <p className="text-slate-500 max-w-md mx-auto text-sm leading-relaxed">
-            Welcome to your new Depot website! You can log in to your dashboard to start writing posts, creating pages, customizing your theme, and installing plugins.
+            Welcome to your new KodPress website! You can log in to your dashboard to start writing posts, creating pages, customizing your theme, and installing plugins.
           </p>
           
           <div className="flex justify-center gap-4">

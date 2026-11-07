@@ -1,6 +1,6 @@
-# Depot: Database Schema
+# KodPress: Database Schema
 
-This document outlines the proposed initial database schema for Depot. The design is heavily influenced by the WordPress database schema, prioritizing extensibility through the use of metadata tables.
+This document outlines the proposed initial database schema for KodPress. The design is heavily influenced by the WordPress database schema, prioritizing extensibility through the use of metadata tables.
 
 The schema is defined using a Prisma-like syntax for clarity, but it can be implemented in any of the target SQL databases (MySQL, PostgreSQL, SQLite). All primary keys (`id`) are auto-incrementing integers.
 
@@ -100,7 +100,7 @@ model Option {
 
 | key           | value                  |
 | :------------ | :--------------------- |
-| `site_title`  | "My Awesome Depot Site"|
+| `site_title`  | "My Awesome KodPress Site"|
 | `active_theme`| "my-theme"             |
 | `admin_email` | "admin@example.com"    |
 

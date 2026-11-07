@@ -10,7 +10,7 @@ export default function PluginsAdmin() {
     <div className="space-y-6">
       <PageHeader
         title="Plugins"
-        description="Extend Depot's functionality with plugins."
+        description="Extend KodPress's functionality with plugins."
         action={{
           label: 'Add New Plugin',
           href: '/admin/plugins/new',

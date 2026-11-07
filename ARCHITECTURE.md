@@ -1,10 +1,10 @@
-# Depot: Technical Architecture
+# KodPress: Technical Architecture
 
-This document provides a deeper dive into the proposed technical architecture for Depot, focusing on the theming and plugin systems.
+This document provides a deeper dive into the proposed technical architecture for KodPress, focusing on the theming and plugin systems.
 
 ## 1. Directory Structure
 
-A Depot project would have a conventional Next.js App Router structure with specific additions for the CMS:
+A KodPress project would have a conventional Next.js App Router structure with specific additions for the CMS:
 
 ```
 /
@@ -17,7 +17,7 @@ A Depot project would have a conventional Next.js App Router structure with spec
 |   |-- [slug]/page.tsx       # Example dynamic frontend route
 |   |-- ...                   # Other frontend routes
 |-- content/                  # User-uploaded content (optional)
-|-- depot.config.ts           # Main configuration file
+|-- kodpress.config.ts           # Main configuration file
 |-- node_modules/
 |-- package.json
 |-- plugins/
@@ -37,7 +37,7 @@ The theming system needs to be flexible enough to allow for complete control ove
 
 ### How it Works
 
-1.  **Base Components:** Depot provides a set of core, unstyled or lightly-styled functional components for rendering content (e.g., `Post.tsx`, `Header.tsx`, `Comment.tsx`). These components are located in a core directory that is not meant to be edited directly.
+1.  **Base Components:** KodPress provides a set of core, unstyled or lightly-styled functional components for rendering content (e.g., `Post.tsx`, `Header.tsx`, `Comment.tsx`). These components are located in a core directory that is not meant to be edited directly.
 
 2.  **Theme Overrides:** An active theme can "override" any base component by creating a file with the same name in a corresponding directory.
 
@@ -46,7 +46,7 @@ The theming system needs to be flexible enough to allow for complete control ove
     *   **Base Component Path:** `core/components/post/Title.tsx`
     *   **Theme Override Path:** `themes/my-theme/components/post/Title.tsx`
 
-3.  **Dynamic Resolution:** Depot's rendering logic will be wrapped in a custom resolver. When a component is requested (e.g., `<DepotComponent name="post/Title" />`), the resolver will:
+3.  **Dynamic Resolution:** KodPress's rendering logic will be wrapped in a custom resolver. When a component is requested (e.g., `<KodPressComponent name="post/Title" />`), the resolver will:
     a. Check if a file exists in the active theme's override directory (`themes/my-theme/components/post/Title.tsx`).
     b. If it exists, import and render that component.
     c. If not, fall back to the base component (`core/components/post/Title.tsx`).
@@ -66,7 +66,7 @@ Replicating WordPress's hook system (`add_action`, `apply_filters`) is the bigge
     *   **Example:** A plugin wants to add "!! 🎉" to every post title.
         ```typescript
         // In: plugins/my-party-plugin/index.ts
-        import { hooks } from '@depot/core';
+        import { hooks } from '@kodpress/core';
 
         hooks.add_filter('post.title.render', (title: string) => {
             return title + '!! 🎉';
@@ -75,7 +75,7 @@ Replicating WordPress's hook system (`add_action`, `apply_filters`) is the bigge
     *   In the core application, when rendering a post title:
         ```typescript
         // In: core/components/PostTitle.tsx
-        import { hooks } from '@depot/core';
+        import { hooks } from '@kodpress/core';
 
         const rawTitle = database.getPostTitle(id);
         const renderedTitle = hooks.apply_filters('post.title.render', rawTitle);
@@ -89,7 +89,7 @@ Replicating WordPress's hook system (`add_action`, `apply_filters`) is the bigge
     *   **Example:** A plugin wants to send an email when a post is published.
         ```typescript
         // In: plugins/email-notify-plugin/index.ts
-        import { hooks } from '@depot/core';
+        import { hooks } from '@kodpress/core';
 
         hooks.add_action('post.published', async (post: PostObject) => {
             await sendEmailToSubscribers(post.title);
@@ -98,7 +98,7 @@ Replicating WordPress's hook system (`add_action`, `apply_filters`) is the bigge
     *   In the core application, after saving a new post:
         ```typescript
         // In: app/(admin)/posts/actions.ts
-        import { hooks } from '@depot/core';
+        import { hooks } from '@kodpress/core';
 
         const newPost = await database.createPost(data);
         hooks.do_action('post.published', newPost);
@@ -115,7 +115,7 @@ This architecture provides a solid foundation for a flexible and extensible CMS,
 
 ## 4. Dynamic Routing (Permalinks)
 
-To replicate the flexibility of WordPress's permalink system, Depot will use a "catch-all" route within the Next.js App Router. This allows URL structures to be defined in the admin panel rather than being dictated by the filesystem.
+To replicate the flexibility of WordPress's permalink system, KodPress will use a "catch-all" route within the Next.js App Router. This allows URL structures to be defined in the admin panel rather than being dictated by the filesystem.
 
 ### How It Works
 

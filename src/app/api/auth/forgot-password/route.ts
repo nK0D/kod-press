@@ -56,7 +56,7 @@ export async function POST(request: Request) {
 
     // Log the link for local testing
     console.log('\n==================================================');
-    console.log('🔑 PASSWORD RESET REQUESTED (DEPOT)');
+    console.log('🔑 PASSWORD RESET REQUESTED (KODPRESS)');
     console.log(`User:  ${user.displayName} (${user.login})`);
     console.log(`Email: ${user.email}`);
     console.log(`Link:  ${resetUrl}`);

@@ -22,11 +22,11 @@ export async function POST(request: Request) {
     // Check if already installed
     try {
       const installedOpt = await db.option.findUnique({
-        where: { key: 'depot_installed' },
+        where: { key: 'kodpress_installed' },
       });
       if (installedOpt?.value === 'true') {
         return NextResponse.json(
-          { success: false, error: 'Depot is already installed.' },
+          { success: false, error: 'KodPress is already installed.' },
           { status: 403 }
         );
       }
@@ -89,7 +89,7 @@ export async function POST(request: Request) {
       { key: 'blogdescription', value: siteTagline },
       { key: 'admin_email', value: siteEmail },
       { key: 'permalink_structure', value: '/%postname%/' },
-      { key: 'active_theme', value: 'depot-default' },
+      { key: 'active_theme', value: 'kodpress-default' },
       { key: 'active_plugins', value: '[]' },
       
       // Temporary Admin credentials to be migrated to User table in Phase 2
@@ -98,7 +98,7 @@ export async function POST(request: Request) {
       { key: 'temp_admin_email', value: siteEmail },
 
       // Installation flag
-      { key: 'depot_installed', value: 'true' },
+      { key: 'kodpress_installed', value: 'true' },
     ];
 
     for (const opt of optionsToCreate) {
@@ -109,8 +109,8 @@ export async function POST(request: Request) {
       });
     }
 
-    // 4. Generate depot-config.json config file at the root
-    const configPath = path.resolve(process.cwd(), 'depot-config.json');
+    // 4. Generate kodpress-config.json config file at the root
+    const configPath = path.resolve(process.cwd(), 'kodpress-config.json');
     const configData = {
       installed: true,
       database: {

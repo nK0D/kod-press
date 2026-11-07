@@ -1,8 +1,8 @@
-# Depot: Project Vision & Feasibility Study
+# KodPress: Project Vision & Feasibility Study
 
 ## 1. Project Vision & Philosophy
 
-**Project Name:** Depot
+**Project Name:** KodPress
 
 **Core Idea:** To create a modern, open-source content management system (CMS) that captures the spirit of WordPress—its flexibility, extensibility, and vibrant ecosystem—but built on a contemporary, performant, and type-safe technology stack.
 
@@ -10,7 +10,7 @@
 
 *   **Developer Experience First:** Leverage the power of Next.js, TypeScript, and a modern ORM like Prisma to create a development environment that is fast, intuitive, and safe.
 *   **Performance by Default:** Utilize the benefits of Next.js, such as Server-Side Rendering (SSR) and Static Site Generation (SSG), to ensure excellent out-of-the-box performance.
-*   **Decoupled but Integrated:** While inspired by WordPress's monolithic architecture, Depot aims for a more decoupled structure where possible, without sacrificing the seamless "all-in-one" experience.
+*   **Decoupled but Integrated:** While inspired by WordPress's monolithic architecture, KodPress aims for a more decoupled structure where possible, without sacrificing the seamless "all-in-one" experience.
 *   **Extensibility is Key:** A robust and well-documented plugin and theming architecture is not an afterthought; it is the central pillar of the project.
 
 ## 2. Feasibility Analysis
@@ -19,7 +19,7 @@ Cloning the entire WordPress feature set and ecosystem is a monumental task. How
 
 ### Technical Feasibility
 
-| WordPress Component | Depot Equivalent (Next.js Stack) | Feasibility & Challenges |
+| WordPress Component | KodPress Equivalent (Next.js Stack) | Feasibility & Challenges |
 | :--- | :--- | :--- |
 | **PHP Core** | Next.js API Routes / TypeScript | **High.** Node.js is a mature ecosystem. The challenge is in structuring the application to be as extensible as WordPress. |
 | **Database (MySQL)** | Prisma ORM (MySQL, PostgreSQL, SQLite) | **High.** Prisma provides excellent database abstraction, making it straightforward to support multiple SQL databases. |
@@ -30,13 +30,13 @@ Cloning the entire WordPress feature set and ecosystem is a monumental task. How
 
 ### Conclusion
 
-The project is **technically feasible** but **highly ambitious**. The success of Depot will hinge almost entirely on the design and implementation of its **plugin and theming architecture**.
+The project is **technically feasible** but **highly ambitious**. The success of KodPress will hinge almost entirely on the design and implementation of its **plugin and theming architecture**.
 
 An iterative, Minimum Viable Product (MVP) approach is recommended, focusing on delivering a solid core content management experience first, followed by a gradual expansion of the plugin and theme APIs.
 
 ## 3. High-Level Architecture
 
-Depot will be structured as a standard Next.js application, but with specific conventions to support its CMS features.
+KodPress will be structured as a standard Next.js application, but with specific conventions to support its CMS features.
 
 1.  **Core System:** A set of foundational services for database access, user authentication, and settings management.
 2.  **Admin Panel:** A dedicated section of the Next.js app located at `/admin`. It will have its own UI components and will not be affected by the frontend theme.

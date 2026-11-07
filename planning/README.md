@@ -1,12 +1,12 @@
-# 🏗️ Depot — Planning Hub
+# 🏗️ KodPress — Planning Hub
 
-> **For AI Agents**: This is the single source of truth for the Depot project's planning. Read this file first. Every document in this directory is cross-linked so any agent — in any session — can pick up exactly where the last one left off.
+> **For AI Agents**: This is the single source of truth for the KodPress project's planning. Read this file first. Every document in this directory is cross-linked so any agent — in any session — can pick up exactly where the last one left off.
 
 ---
 
 ## 📌 Project Overview
 
-**Depot** is a modern, open-source CMS built with **Next.js (App Router) + TypeScript** — a WordPress clone that offers everything WordPress has:
+**KodPress** is a modern, open-source CMS built with **Next.js (App Router) + TypeScript** — a WordPress clone that offers everything WordPress has:
 
 - A **web-based setup wizard** (like WordPress's famous 5-minute install)
 - A **full Admin panel** at `/admin` (mirrors wp-admin but with a modern custom theme)
@@ -22,7 +22,7 @@
 ## 📂 Planning Directory Structure
 
 ```
-depot/planning/
+kod-press/planning/
 ├── README.md                    ← YOU ARE HERE — master index & handoff guide
 ├── MASTER_PLAN.md               ← Full phased plan (all phases, all milestones)
 ├── CURRENT_STATE.md             ← What's done, in progress, and what's next
@@ -63,14 +63,14 @@ depot/planning/
 
 | What | Path |
 |---|---|
-| **Planning docs** | `depot/planning/` |
-| **Next.js project root** | `depot/` |
-| **High-level docs** | `depot/README.md`, `depot/ARCHITECTURE.md`, `depot/DATABASE_SCHEMA.md` |
-| **App router root** | `depot/src/app/` |
-| **Admin panel** | `depot/src/app/admin/` |
-| **API routes** | `depot/src/app/api/` |
-| **Plugin system** | `depot/plugins/` |
-| **Themes** | `depot/themes/` |
+| **Planning docs** | `kod-press/planning/` |
+| **Next.js project root** | `kod-press/` |
+| **High-level docs** | `kod-press/README.md`, `kod-press/ARCHITECTURE.md`, `kod-press/DATABASE_SCHEMA.md` |
+| **App router root** | `kod-press/src/app/` |
+| **Admin panel** | `kod-press/src/app/admin/` |
+| **API routes** | `kod-press/src/app/api/` |
+| **Plugin system** | `kod-press/plugins/` |
+| **Themes** | `kod-press/themes/` |
 
 ---
 
@@ -78,7 +78,7 @@ depot/planning/
 
 > **Last Updated:** 2026-07-04  
 > **Current Phase:** Phase 0 (Planning Complete — Code Not Started)  
-> **Next Action:** Bootstrap the Next.js project inside `depot/` — see Phase 1
+> **Next Action:** Bootstrap the Next.js project inside `kod-press/` — see Phase 1
 
 See `CURRENT_STATE.md` for detailed status.
 

@@ -9,15 +9,15 @@
 
 ## Goal
 
-Bootstrap the Next.js application inside `depot/` and build the web-based setup wizard — the equivalent of WordPress's "Famous 5-Minute Install".
+Bootstrap the Next.js application inside `kod-press/` and build the web-based setup wizard — the equivalent of WordPress's "Famous 5-Minute Install".
 
 ---
 
 ## Task Checklist
 
 ### 1.1 — Scaffold Next.js Project
-- [ ] Verify `depot/` already has: `README.md`, `ARCHITECTURE.md`, `DATABASE_SCHEMA.md`, `planning/`
-- [ ] Run `create-next-app` inside `depot/` with the correct flags (see HANDOFF_GUIDE.md)
+- [ ] Verify `kod-press/` already has: `README.md`, `ARCHITECTURE.md`, `DATABASE_SCHEMA.md`, `planning/`
+- [ ] Run `create-next-app` inside `kod-press/` with the correct flags (see HANDOFF_GUIDE.md)
 - [ ] Confirm existing `.md` files and `planning/` were NOT overwritten
 - [ ] Remove default Next.js boilerplate (default styles, images, example pages)
 - [ ] Enable TypeScript strict mode in `tsconfig.json`
@@ -38,7 +38,7 @@ Bootstrap the Next.js application inside `depot/` and build the web-based setup 
 ### 1.3 — Initialize Prisma
 - [ ] `npx prisma init --datasource-provider sqlite` (SQLite for dev, easy to switch later)
 - [ ] Create initial minimal schema in `prisma/schema.prisma`:
-  - `Option` table only (needed for setup wizard to write `depot_installed`)
+  - `Option` table only (needed for setup wizard to write `kodpress_installed`)
 - [ ] Run `npx prisma migrate dev --name init`
 - [ ] Create Prisma singleton: `src/lib/db.ts`
 
@@ -49,10 +49,10 @@ Bootstrap the Next.js application inside `depot/` and build the web-based setup 
   - `DATABASE_URL`
   - `AUTH_SECRET` (for NextAuth)
   - `NEXTAUTH_URL`
-  - `DEPOT_UPLOAD_DIR` (path for file uploads)
+  - `KODPRESS_UPLOAD_DIR` (path for file uploads)
 
-### 1.5 — Depot Config File
-- [ ] Create `depot.config.ts` at project root
+### 1.5 — KodPress Config File
+- [ ] Create `kodpress.config.ts` at project root
 - [ ] Config options: `name`, `version`, `uploadDir`, `pluginsDir`, `themesDir`
 
 ### 1.6 — HookServer Singleton (Stub)
@@ -75,14 +75,14 @@ Bootstrap the Next.js application inside `depot/` and build the web-based setup 
 ### 1.7 — Middleware
 - [ ] Create `src/middleware.ts`
 - [ ] Rules:
-  - `GET /setup` → if `depot_installed` option exists in DB, redirect to `/admin`
+  - `GET /setup` → if `kodpress_installed` option exists in DB, redirect to `/admin`
   - `GET /admin/*` (except `/admin/login`) → if not authenticated, redirect to `/admin/login`
   - Everything else → pass through
 - [ ] Handle edge case: if DB is not yet configured (setup not run), allow `/setup`
 
 ### 1.8 — Setup Wizard (`/setup`)
 - [ ] Multi-step wizard UI (beautiful, not plain)
-- [ ] **Step 1: Welcome** — Depot logo, "Let's get started" message, language selector (just English for now), "Let's Go" button
+- [ ] **Step 1: Welcome** — KodPress logo, "Let's get started" message, language selector (just English for now), "Let's Go" button
 - [ ] **Step 2: Database Configuration**
   - DB type selector: MySQL / PostgreSQL / SQLite
   - Fields: Host, Port, Database Name, Username, Password
@@ -101,7 +101,7 @@ Bootstrap the Next.js application inside `depot/` and build the web-based setup 
   - Run all Prisma migrations
   - Seed default options
   - Create the admin user
-  - Write `depot_installed = "true"` to `options`
+  - Write `kodpress_installed = "true"` to `options`
 
 ### 1.9 — API Routes for Setup
 - [ ] `POST /api/setup/test-db` — tests DB connection with provided credentials
@@ -130,7 +130,7 @@ Bootstrap the Next.js application inside `depot/` and build the web-based setup 
 ## Files Created in This Phase
 
 ```
-depot/
+kod-press/
 ├── src/
 │   ├── app/
 │   │   ├── layout.tsx
@@ -158,7 +158,7 @@ depot/
 ├── prisma/
 │   ├── schema.prisma
 │   └── migrations/
-├── depot.config.ts
+├── kodpress.config.ts
 ├── .env.example
 └── .env
 ```

@@ -9,7 +9,7 @@ export default function ThemesAdmin() {
     <div className="space-y-6">
       <PageHeader
         title="Appearance"
-        description="Manage the visual presentation of your Depot site."
+        description="Manage the visual presentation of your KodPress site."
       />
       <EmptyState
         title="No themes installed"

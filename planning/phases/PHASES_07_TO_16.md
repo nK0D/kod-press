@@ -77,7 +77,7 @@ Complete settings pages + the configurable permalink system — the most technic
   - Day and name: `/%year%/%month%/%day%/%postname%/`
   - Month and name: `/%year%/%month%/%postname%/`
   - Numeric: `/archives/%post_id%`
-  - Post name: `/%postname%/`  ← default for Depot
+  - Post name: `/%postname%/`  ← default for KodPress
   - Custom structure: text input field
 - [ ] Category base prefix field
 - [ ] Tag base prefix field
@@ -121,10 +121,10 @@ A complete frontend theming system with a default theme, component overriding, a
   - `loadTheme(name: string): ThemeDefinition`
   - `getActiveTheme(): ThemeDefinition`
   - `resolveComponent(name: string): React.ComponentType` — checks theme override, falls back to core
-- [ ] `<DepotComponent name="..." props={...} />` wrapper component
+- [ ] `<KodPressComponent name="..." props={...} />` wrapper component
 - [ ] `themes/<theme-name>/theme.json` schema: name, version, author, description, screenshot, supports, textDomain, widgetAreas, menuLocations
 
-### Default Theme (`themes/depot-default/`)
+### Default Theme (`themes/kodpress-default/`)
 - [ ] `theme.json` metadata
 - [ ] `style.css` — theme stylesheet using CSS variables
 - [ ] Core components (frontend):
@@ -174,7 +174,7 @@ A complete frontend theming system with a default theme, component overriding, a
 **Status**: 🔴 NOT STARTED | **Depends on**: Phase 5 | **Estimated Sessions**: 2
 
 ## Goal
-A fully functional plugin architecture allowing third-party code to extend Depot without modifying core.
+A fully functional plugin architecture allowing third-party code to extend KodPress without modifying core.
 
 ## Key Tasks
 
@@ -225,14 +225,14 @@ A fully functional plugin architecture allowing third-party code to extend Depot
 - [ ] Bulk: Activate, Deactivate, Delete
 
 ### Example Plugin
-- [ ] `plugins/depot-seo/` — SEO meta plugin:
+- [ ] `plugins/kodpress-seo/` — SEO meta plugin:
   - Adds "SEO" meta box to post editor
   - Fields: Meta Title, Meta Description, OG Image
   - Hooks: `apply_filters('post.head', headContent, post)` to inject meta tags
   - Stores values in `post_meta` with keys `_seo_title`, `_seo_description`, `_seo_og_image`
 
 ## Definition of Done
-- [ ] `plugins/depot-seo` plugin can be activated and deactivated from admin
+- [ ] `plugins/kodpress-seo` plugin can be activated and deactivated from admin
 - [ ] SEO meta box appears in post editor when plugin is active
 - [ ] SEO meta tags appear in page `<head>` for published posts
 - [ ] Deactivating the plugin removes the meta box and tags
@@ -298,7 +298,7 @@ A fully functional plugin architecture allowing third-party code to extend Depot
 - [ ] Built-in widgets:
   - Search, Recent Posts (count), Recent Comments (count), Archives (dropdown/list/monthly), Categories (list/dropdown), Tag Cloud, Text (title + body), HTML, Image
 - [ ] `src/lib/widgets.ts`: `registerWidget(widget)`, `getWidgetsForArea(area)`
-- [ ] Frontend: `<DepotSidebar area="sidebar-1" />` renders all active widgets for that area
+- [ ] Frontend: `<KodPressSidebar area="sidebar-1" />` renders all active widgets for that area
 
 ## Definition of Done
 - [ ] Can add Search widget to sidebar, it appears on frontend
@@ -314,12 +314,12 @@ A fully functional plugin architecture allowing third-party code to extend Depot
 ## Key Tasks
 - [ ] `/admin/help` — main help browser
 - [ ] Left sidebar: documentation sections (Getting Started, Content, Appearance, Plugins, Settings, API, Keyboard Shortcuts, Changelog)
-- [ ] Content area: renders markdown files from `depot/docs/`
+- [ ] Content area: renders markdown files from `kod-press/docs/`
 - [ ] Search: fuzzy search across all doc titles + content
 - [ ] Contextual help: every admin page has a "?" icon in topbar that opens a context-specific help drawer (`<HelpPanel>`)
 - [ ] Keyboard shortcuts page: table of all shortcuts
 - [ ] "What's New" / Changelog page
-- [ ] Markdown files in `depot/docs/`:
+- [ ] Markdown files in `kod-press/docs/`:
   - `getting-started.md`, `posts.md`, `pages.md`, `media.md`, `users.md`, `themes.md`, `plugins.md`, `settings.md`, `api.md`, `keyboard-shortcuts.md`, `changelog.md`
 - [ ] Render markdown with syntax highlighting (`rehype-highlight` or `shiki`)
 

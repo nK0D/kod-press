@@ -8,7 +8,7 @@
 
 ## Context
 
-Depot is a WordPress clone built on modern web technologies. Every major technology choice here was deliberate and confirmed by the project owner.
+KodPress is a WordPress clone built on modern web technologies. Every major technology choice here was deliberate and confirmed by the project owner.
 
 ---
 

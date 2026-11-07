@@ -198,7 +198,7 @@ export default function Sidebar({
             className="flex items-center gap-2 font-black tracking-wider text-slate-100 select-none"
           >
             <span className="h-7 w-7 rounded-lg bg-indigo-600 flex items-center justify-center text-sm text-white font-extrabold shadow-md shadow-indigo-600/35">
-              D
+              K
             </span>
             {!isCollapsed && (
               <span className="text-sm font-bold truncate max-w-[170px] uppercase text-slate-200">
@@ -324,7 +324,7 @@ export default function Sidebar({
         <div className="border-t border-slate-800/80 bg-slate-950/20 p-3 space-y-2">
           {!isCollapsed && (
             <div className="flex items-center justify-between px-2 text-[10px] text-slate-500 font-bold select-none uppercase tracking-wider">
-              <span>Depot CMS</span>
+              <span>KodPress CMS</span>
               <span>v1.0.0</span>
             </div>
           )}

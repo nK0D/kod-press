@@ -38,7 +38,7 @@ export default function Topbar({ user, setIsMobileOpen }: TopbarProps) {
 
   // Load and apply theme from localStorage on load
   useEffect(() => {
-    const savedTheme = localStorage.getItem('depot-admin-theme') || 'light';
+    const savedTheme = localStorage.getItem('kodpress-admin-theme') || 'light';
     const isDark = savedTheme === 'dark';
     setIsThemeDark(isDark);
     document.body.setAttribute('data-theme', savedTheme);
@@ -48,7 +48,7 @@ export default function Topbar({ user, setIsMobileOpen }: TopbarProps) {
   const toggleTheme = () => {
     const newTheme = !isThemeDark ? 'dark' : 'light';
     setIsThemeDark(!isThemeDark);
-    localStorage.setItem('depot-admin-theme', newTheme);
+    localStorage.setItem('kodpress-admin-theme', newTheme);
     document.body.setAttribute('data-theme', newTheme);
   };
 

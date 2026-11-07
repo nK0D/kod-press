@@ -14,7 +14,7 @@ A WordPress-style media library with upload, image processing, grid/list view, a
 
 ## Key Design Decision
 
-In WordPress (and Depot), **media attachments ARE posts** with `type = "attachment"`. The file path is stored in `guid`, and metadata (width, height, file size, alt text, etc.) is stored in `post_meta`. This means the `Post` table already handles media — no extra table needed.
+In WordPress (and KodPress), **media attachments ARE posts** with `type = "attachment"`. The file path is stored in `guid`, and metadata (width, height, file size, alt text, etc.) is stored in `post_meta`. This means the `Post` table already handles media — no extra table needed.
 
 ---
 

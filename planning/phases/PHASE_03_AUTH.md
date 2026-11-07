@@ -46,7 +46,7 @@ Implement a secure authentication system for the admin panel using NextAuth.js v
 
 ### 3.4 — Admin Login Page
 - [ ] `src/app/admin/login/page.tsx`
-- [ ] Design: Centered card on dark background, Depot logo, clean and modern (NOT using the frontend theme)
+- [ ] Design: Centered card on dark background, KodPress logo, clean and modern (NOT using the frontend theme)
 - [ ] Fields: Username/Email, Password
 - [ ] "Remember me" checkbox (controls session max age)
 - [ ] Error states: "Invalid credentials", "Account disabled"

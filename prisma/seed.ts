@@ -6,13 +6,13 @@ async function main() {
   // 1. Create Default Options if they don't exist
   const defaultOptions = [
     { key: 'siteurl', value: 'http://localhost:3000' },
-    { key: 'blogname', value: 'My Depot Site' },
-    { key: 'blogdescription', value: 'Just another Depot site' },
+    { key: 'blogname', value: 'My KodPress Site' },
+    { key: 'blogdescription', value: 'Just another KodPress site' },
     { key: 'admin_email', value: 'admin@example.com' },
     { key: 'permalink_structure', value: '/%postname%/' },
     { key: 'category_base', value: 'category' },
     { key: 'tag_base', value: 'tag' },
-    { key: 'active_theme', value: 'depot-default' },
+    { key: 'active_theme', value: 'kodpress-default' },
     { key: 'active_plugins', value: '[]' },
     { key: 'posts_per_page', value: '10' },
     { key: 'date_format', value: 'MMMM d, yyyy' },
@@ -24,7 +24,7 @@ async function main() {
     { key: 'avatar_default', value: 'mystery' },
     { key: 'comment_moderation', value: '0' },
     { key: 'show_on_front', value: 'posts' },
-    { key: 'depot_version', value: '1.0.0' },
+    { key: 'kodpress_version', value: '1.0.0' },
   ];
 
   for (const opt of defaultOptions) {

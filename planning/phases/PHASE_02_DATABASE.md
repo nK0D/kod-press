@@ -215,7 +215,7 @@ model Link {
 ### 2.3 — Database Seeder
 - [ ] Create `prisma/seed.ts`
 - [ ] Seeds:
-  - Default options: `siteurl`, `blogname`, `blogdescription`, `admin_email`, `permalink_structure`, `active_theme`, `active_plugins`, `depot_version`, `depot_installed`
+  - Default options: `siteurl`, `blogname`, `blogdescription`, `admin_email`, `permalink_structure`, `active_theme`, `active_plugins`, `kodpress_version`, `kodpress_installed`
   - Default categories: "Uncategorized" (term + term_taxonomy)
   - Admin user (from setup wizard — seed just creates the skeleton if not done via wizard)
 

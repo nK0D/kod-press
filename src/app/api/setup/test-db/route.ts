@@ -16,11 +16,11 @@ export async function POST(request: Request) {
     // Check if the application is already installed
     try {
       const installedOpt = await db.option.findUnique({
-        where: { key: 'depot_installed' },
+        where: { key: 'kodpress_installed' },
       });
       if (installedOpt?.value === 'true') {
         return NextResponse.json(
-          { success: false, error: 'Depot is already installed.' },
+          { success: false, error: 'KodPress is already installed.' },
           { status: 403 }
         );
       }

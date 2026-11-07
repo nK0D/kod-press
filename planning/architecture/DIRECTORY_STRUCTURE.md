@@ -1,9 +1,9 @@
-# Depot — Full Project Directory Structure
+# KodPress — Full Project Directory Structure
 
-> This is the target directory structure for the fully built Depot project. Agents should use this as the reference for where to place new files.
+> This is the target directory structure for the fully built KodPress project. Agents should use this as the reference for where to place new files.
 
 ```
-depot/                                  ← Next.js project root
+kod-press/                                  ← Next.js project root
 │
 ├── planning/                           ← All planning docs (not part of the app)
 │   ├── README.md
@@ -16,17 +16,17 @@ depot/                                  ← Next.js project root
 ├── public/                             ← Static assets served directly
 │   ├── uploads/                        ← User media uploads
 │   │   └── 2026/07/image.jpg
-│   └── depot-logo.svg
+│   └── kodpress-logo.svg
 │
 ├── plugins/                            ← Third-party and built-in plugins
-│   └── depot-seo/
+│   └── kodpress-seo/
 │       ├── index.ts                    ← Plugin entry point (exports `plugin` object)
 │       ├── components/
 │       │   └── SeoMetaBox.tsx
 │       └── package.json
 │
 ├── themes/                             ← Installed themes
-│   └── depot-default/
+│   └── kodpress-default/
 │       ├── theme.json                  ← Theme metadata + widget areas + menu locations
 │       ├── style.css                   ← Theme stylesheet
 │       └── components/                 ← Theme component overrides
@@ -197,7 +197,7 @@ depot/                                  ← Next.js project root
 │       ├── plugins.ts                  ← Plugin discovery & loading
 │       ├── options.ts                  ← Options table helpers (get/set with cache)
 │       ├── routing.ts                  ← PermalinkRouter class + generateLink
-│       ├── theme.ts                    ← Theme loader + DepotComponent resolver
+│       ├── theme.ts                    ← Theme loader + KodPressComponent resolver
 │       ├── post-types.ts               ← Custom post type registry
 │       ├── taxonomies.ts               ← Custom taxonomy registry
 │       ├── roles.ts                    ← Role definitions
@@ -211,7 +211,7 @@ depot/                                  ← Next.js project root
 │       └── api-auth.ts                 ← API key authentication
 │
 ├── auth.ts                             ← NextAuth v5 config
-├── depot.config.ts                     ← Depot configuration
+├── kodpress.config.ts                     ← KodPress configuration
 ├── middleware.ts                       ← Next.js middleware (route protection)
 ├── next.config.ts                      ← Next.js configuration
 ├── tsconfig.json

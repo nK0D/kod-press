@@ -1,4 +1,4 @@
-# Depot — Complete Database Design
+# KodPress — Complete Database Design
 
 > Full Prisma schema for all core tables. This is the definitive reference for Phase 2 implementation.
 
@@ -240,13 +240,13 @@ model Link {
 
 const defaultOptions = [
   { key: 'siteurl',                   value: 'http://localhost:3000' },
-  { key: 'blogname',                  value: 'My Depot Site' },
-  { key: 'blogdescription',           value: 'Just another Depot site' },
+  { key: 'blogname',                  value: 'My KodPress Site' },
+  { key: 'blogdescription',           value: 'Just another KodPress site' },
   { key: 'admin_email',               value: 'admin@example.com' },
   { key: 'permalink_structure',       value: '/%postname%/' },
   { key: 'category_base',             value: 'category' },
   { key: 'tag_base',                  value: 'tag' },
-  { key: 'active_theme',              value: 'depot-default' },
+  { key: 'active_theme',              value: 'kodpress-default' },
   { key: 'active_plugins',            value: '[]' },
   { key: 'posts_per_page',            value: '10' },
   { key: 'date_format',               value: 'MMMM d, yyyy' },
@@ -258,8 +258,8 @@ const defaultOptions = [
   { key: 'avatar_default',            value: 'mystery' },
   { key: 'comment_moderation',        value: '0' },
   { key: 'show_on_front',             value: 'posts' }, // posts | page
-  { key: 'depot_version',             value: '1.0.0' },
-  { key: 'depot_installed',           value: 'true' },
+  { key: 'kodpress_version',             value: '1.0.0' },
+  { key: 'kodpress_installed',           value: 'true' },
 ];
 
 const defaultCategory = {
@@ -272,7 +272,7 @@ const defaultCategory = {
 
 ## Key PostMeta Reserved Keys
 
-These are PostMeta keys used internally by Depot core (same as WordPress's convention):
+These are PostMeta keys used internally by KodPress core (same as WordPress's convention):
 
 | Key | Description |
 |---|---|
@@ -282,7 +282,7 @@ These are PostMeta keys used internally by Depot core (same as WordPress's conve
 | `_wp_attachment_metadata` | JSON of image sizes/dimensions (attachments only) |
 | `_wp_attached_file` | Relative path of the file (attachments only) |
 | `_wp_page_template` | Page template filename |
-| `_depot_revision_parent` | Parent post ID (for revisions) |
+| `_kodpress_revision_parent` | Parent post ID (for revisions) |
 
 ---
 
@@ -304,6 +304,6 @@ These are PostMeta keys used internally by Depot core (same as WordPress's conve
 
 - **SQLite**: Use for development. Does not support `@db.Text` in the same way — Prisma handles this transparently. Does not support concurrent writes well — not for production.
 - **MySQL**: Production default. Requires `@db.Text` for long text fields. Use `utf8mb4` charset.
-- **PostgreSQL**: Production alternative. `@db.Text` works natively. UUID primary keys are possible but NOT used in Depot (we use autoincrement).
+- **PostgreSQL**: Production alternative. `@db.Text` works natively. UUID primary keys are possible but NOT used in KodPress (we use autoincrement).
 
 To switch databases, only `DATABASE_PROVIDER` and `DATABASE_URL` env vars need to change. The Prisma schema auto-adapts.

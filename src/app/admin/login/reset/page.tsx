@@ -67,7 +67,7 @@ function ResetPasswordForm() {
     <div className="flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-gradient-to-tr from-slate-950 via-slate-900 to-slate-950 text-slate-100 min-h-screen">
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
         <h1 className="text-4xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-violet-300 to-indigo-200">
-          DEPOT
+          KODPRESS
         </h1>
         <p className="mt-2 text-sm text-slate-400 font-medium">
           Choose a new password for your account

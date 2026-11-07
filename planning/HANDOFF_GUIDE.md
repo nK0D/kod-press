@@ -1,4 +1,4 @@
-# Depot — Agent Handoff Guide
+# KodPress — Agent Handoff Guide
 
 > Read this after `README.md` and `CURRENT_STATE.md`. Contains critical conventions, architecture rules, and gotchas for any agent picking up this project.
 
@@ -8,18 +8,18 @@
 
 | What | Path |
 |---|---|
-| Planning docs | `depot/planning/` |
-| High-level project docs | `depot/README.md`, `depot/ARCHITECTURE.md`, `depot/DATABASE_SCHEMA.md` |
-| Next.js project root | `depot/` (the app is scaffolded here) |
-| App Router root | `depot/src/app/` |
-| Admin panel routes | `depot/src/app/admin/` |
-| API routes | `depot/src/app/api/` |
-| Core libraries | `depot/src/lib/` |
-| Plugin system code | `depot/src/lib/hooks.ts` (HookServer) |
-| Plugin directory | `depot/plugins/` |
-| Themes directory | `depot/themes/` |
-| Prisma schema | `depot/prisma/schema.prisma` |
-| Config file | `depot/depot.config.ts` |
+| Planning docs | `kod-press/planning/` |
+| High-level project docs | `kod-press/README.md`, `kod-press/ARCHITECTURE.md`, `kod-press/DATABASE_SCHEMA.md` |
+| Next.js project root | `kod-press/` (the app is scaffolded here) |
+| App Router root | `kod-press/src/app/` |
+| Admin panel routes | `kod-press/src/app/admin/` |
+| API routes | `kod-press/src/app/api/` |
+| Core libraries | `kod-press/src/lib/` |
+| Plugin system code | `kod-press/src/lib/hooks.ts` (HookServer) |
+| Plugin directory | `kod-press/plugins/` |
+| Themes directory | `kod-press/themes/` |
+| Prisma schema | `kod-press/prisma/schema.prisma` |
+| Config file | `kod-press/kodpress.config.ts` |
 
 ---
 
@@ -86,15 +86,15 @@ src/app/
 ### Plugin Hook System
 - `HookServer` is a **singleton** in `src/lib/hooks.ts`
 - WordPress-compatible API: `hooks.add_action()`, `hooks.add_filter()`, `hooks.do_action()`, `hooks.apply_filters()`
-- Plugins live in `depot/plugins/<plugin-name>/index.ts`
+- Plugins live in `kod-press/plugins/<plugin-name>/index.ts`
 - Plugins are discovered and loaded at **server startup** by scanning the plugins directory
 - Plugins CANNOT be hot-reloaded in production — require server restart
 - Plugins can: register hooks, add API routes (via a plugin router registry), inject admin UI components, extend the DB schema (via their own Prisma models)
 
 ### Theming System
-- Themes live in `depot/themes/<theme-name>/`
+- Themes live in `kod-press/themes/<theme-name>/`
 - Active theme: `options.key = "active_theme"`, `options.value = "default"`
-- A `<DepotComponent name="post/Title" />` wrapper resolves theme overrides at runtime
+- A `<KodPressComponent name="post/Title" />` wrapper resolves theme overrides at runtime
 - Core components: `src/components/frontend/` (base, never deleted)
 - Theme overrides: `themes/<theme-name>/components/`
 - Theme metadata: `themes/<theme-name>/theme.json`
@@ -141,7 +141,7 @@ src/app/
 - **API routes** at `app/api/` are for public-facing REST endpoints only
 - File naming: `kebab-case` for files, `PascalCase` for components, `camelCase` for utilities
 - All admin routes are protected by `middleware.ts` — unauthenticated → redirect to `/admin/login`
-- The `/setup` route redirects to `/admin` if the system is already configured (checks `options.key = "depot_installed"`)
+- The `/setup` route redirects to `/admin` if the system is already configured (checks `options.key = "kodpress_installed"`)
 - Environment variables: always define in `.env.example`, load via `src/lib/env.ts` (using Zod for validation)
 - Error handling: use typed error objects, not string throws
 
@@ -150,10 +150,10 @@ src/app/
 ## 🚀 Phase 1 Bootstrap Commands
 
 ```bash
-# Navigate to the parent directory (depot/ exists already with docs)
-cd /Users/ankit/Projects/easysocial/depot
+# Navigate to the parent directory (kod-press/ exists already with docs)
+cd kod-press
 
-# Initialize a package.json first (since depot/ has existing files)
+# Initialize a package.json first (since kod-press/ has existing files)
 # Then scaffold Next.js manually or use create-next-app with --yes
 
 # OPTION A: Use create-next-app in the existing directory

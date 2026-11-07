@@ -22,7 +22,7 @@ export default function AdminShell({ siteName, user, children }: AdminShellProps
 
   // Sync collapsed state from localStorage after mount
   useEffect(() => {
-    const saved = localStorage.getItem('depot-sidebar-collapsed');
+    const saved = localStorage.getItem('kodpress-sidebar-collapsed');
     if (saved === 'true') {
       setIsCollapsed(true);
     }
@@ -31,7 +31,7 @@ export default function AdminShell({ siteName, user, children }: AdminShellProps
 
   const handleSetCollapsed = (collapsed: boolean) => {
     setIsCollapsed(collapsed);
-    localStorage.setItem('depot-sidebar-collapsed', String(collapsed));
+    localStorage.setItem('kodpress-sidebar-collapsed', String(collapsed));
   };
 
   if (!isMounted) {
