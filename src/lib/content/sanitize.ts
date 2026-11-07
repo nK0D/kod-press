@@ -35,5 +35,7 @@ export function sanitizeContent(html: string): string {
 
 /** Strips every tag, for plain-text fields such as excerpts. */
 export function toPlainText(html: string): string {
-  return sanitizeHtml(html, { allowedTags: [], allowedAttributes: {} }).replace(/\s+/g, ' ').trim();
+  // Keep a gap where block elements end, so "<h2>A</h2><p>B</p>" reads "A B", not "AB".
+  const spaced = html.replace(/<\/(?:p|h[1-6]|li|blockquote|pre|figcaption|div)>|<br\s*\/?>/gi, '$& ');
+  return sanitizeHtml(spaced, { allowedTags: [], allowedAttributes: {} }).replace(/\s+/g, ' ').trim();
 }

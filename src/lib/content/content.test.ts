@@ -255,6 +255,7 @@ describe('managing terms', () => {
       ['Uncategorized', 0],
     ]);
     await expect(content.terms.update(admin, parent.id, { name: 'Parent', parent: child.id })).rejects.toThrow('under itself');
+    expect((await content.terms.list('category')).filter((t) => t.isDefault).map((t) => t.name)).toEqual(['Uncategorized']);
   });
 
   it('rejects duplicates and lets a tag share a name with a category', async () => {
@@ -283,5 +284,11 @@ describe('content cleanup', () => {
   it('drops trailing empty paragraphs the editor leaves behind', async () => {
     const post = await content.save(author, { type: 'post', title: 'Tidy', content: '<h2>Hi</h2><p>Body</p><p></p><p><br></p>', status: 'draft' });
     expect(post.content).toBe('<h2>Hi</h2><p>Body</p>');
+  });
+
+  it('builds a readable automatic excerpt from block content', async () => {
+    await content.save(author, { type: 'post', title: 'Auto', content: '<h2>Intro</h2><p>First line.</p><ul><li><p>One</p></li><li><p>Two</p></li></ul>', status: 'publish' });
+    const [post] = await content.latestPublished();
+    expect(post.excerpt).toBe('Intro First line. One Two');
   });
 });

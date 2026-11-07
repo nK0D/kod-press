@@ -45,6 +45,8 @@ export interface TermView extends TermRef {
   count: number;
   /** Nesting depth in the category tree (0 for top level and for tags). */
   depth: number;
+  /** The default category, which posts fall back to and which cannot be deleted. */
+  isDefault: boolean;
 }
 
 export interface PostPermissions {
@@ -689,12 +691,25 @@ export function createContentStore({ db, hooks }: ContentStoreDeps) {
 
   async function listTerms(taxonomy: TaxonomyName, options: { search?: string } = {}): Promise<TermView[]> {
     const search = options.search?.trim();
-    const rows = await db.termTaxonomy.findMany({
-      where: { taxonomy, ...(search ? { term: { name: { contains: search } } } : {}) },
-      include: { term: true },
-    });
+    const [rows, fallback] = await Promise.all([
+      db.termTaxonomy.findMany({
+        where: { taxonomy, ...(search ? { term: { name: { contains: search } } } : {}) },
+        include: { term: true },
+      }),
+      taxonomy === 'category' ? defaultCategoryId(db) : null,
+    ]);
     const views = rows
-      .map((r) => ({ id: r.id, name: r.term.name, slug: r.term.slug, taxonomy, description: r.description, parent: r.parent, count: r.count, depth: 0 }))
+      .map((r) => ({
+        id: r.id,
+        name: r.term.name,
+        slug: r.term.slug,
+        taxonomy,
+        description: r.description,
+        parent: r.parent,
+        count: r.count,
+        depth: 0,
+        isDefault: r.id === fallback,
+      }))
       .sort((a, b) => a.name.localeCompare(b.name));
     if (!TAXONOMIES[taxonomy].hierarchical || search) return views;
 

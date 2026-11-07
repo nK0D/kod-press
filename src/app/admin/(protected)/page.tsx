@@ -143,7 +143,7 @@ export default async function AdminDashboard() {
                         </span>
                       </div>
                       <p className="text-slate-650 dark:text-slate-400 font-medium leading-relaxed italic text-[11px] truncate max-w-xl">
-                        "{comment.content}"
+                        &ldquo;{comment.content}&rdquo;
                       </p>
                     </div>
                   ))}
